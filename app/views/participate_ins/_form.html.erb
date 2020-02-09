@@ -1,0 +1,42 @@
+<%= form_with(model: participate_in, local: true) do |form| %>
+  <% if participate_in.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(participate_in.errors.count, "error") %> prohibited this participate_in from being saved:</h2>
+
+      <ul>
+        <% participate_in.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :challenge_id %>
+    <%= form.number_field :challenge_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :continuous_check_in %>
+    <%= form.number_field :continuous_check_in %>
+  </div>
+
+  <div class="field">
+    <%= form.label :failed %>
+    <%= form.check_box :failed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :finished %>
+    <%= form.check_box :finished %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Challenge</th>
+      <th>Continuous check in</th>
+      <th>Finished</th>
+      <th>Boolean</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @histories.each do |history| %>
+      <tr>
+        <td><%= history.user_id %></td>
+        <td><%= history.challenge_id %></td>
+        <td><%= history.continuous_check_in %></td>
+        <td><%= history.finished %></td>
+        <td><%= history.boolean %></td>
+        <td><%= link_to 'Show', history %></td>
+        <td><%= link_to 'Edit', edit_history_path(history) %></td>
+        <td><%= link_to 'Destroy', history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New History', new_history_path %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Participate Ins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Challenge</th>
+      <th>Continuous check in</th>
+      <th>Failed</th>
+      <th>Finished</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @participate_ins.each do |participate_in| %>
+      <tr>
+        <td><%= participate_in.user_id %></td>
+        <td><%= participate_in.challenge_id %></td>
+        <td><%= participate_in.continuous_check_in %></td>
+        <td><%= participate_in.failed %></td>
+        <td><%= participate_in.finished %></td>
+        <td><%= link_to 'Show', participate_in %></td>
+        <td><%= link_to 'Edit', edit_participate_in_path(participate_in) %></td>
+        <td><%= link_to 'Destroy', participate_in, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Participate In', new_participate_in_path %>

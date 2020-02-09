@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @history.user_id %>
+</p>
+
+<p>
+  <strong>Challenge:</strong>
+  <%= @history.challenge_id %>
+</p>
+
+<p>
+  <strong>Continuous check in:</strong>
+  <%= @history.continuous_check_in %>
+</p>
+
+<p>
+  <strong>Finished:</strong>
+  <%= @history.finished %>
+</p>
+
+<p>
+  <strong>Boolean:</strong>
+  <%= @history.boolean %>
+</p>
+
+<%= link_to 'Edit', edit_history_path(@history) %> |
+<%= link_to 'Back', histories_path %>

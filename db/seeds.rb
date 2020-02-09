@@ -5,3 +5,105 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# fake users
+User.delete_all
+users = []
+columns = [:name, :email, :password, :coins, :chechin_number, :challenge_number]
+
+25.times do
+  # TODO
+  user_name = (Faker::Hacker.noun).capitalize
+  user_email = # use faker to fake an email, make sure it's unqiue
+  user_password = # faker a password, make sure it's unique
+  user_coins = # non-negative number of coins
+  user_checkin_number = # non-negative number of checkins
+  user_challenge_number = # non-negative number of checkins
+  users.push({ name: user_name, email: user_email, password: user_password,
+               coins: user_coins, checkin_number: user_checkin_number,
+               challenge_number: user_challenge_number 
+        })
+end
+User.import columns, users, validate: false
+
+# fake challenges
+Challenge.delete_all
+challenges = []
+columns = [:name, :category, :description, :coins, :participant_number, 
+              :failed_number, :duration, :deadline
+            ]
+
+25.times do
+  challenge_name = (Faker::Hacker.ingverb + " " + Faker::Hacker.noun + "s").capitalize
+  # TODO
+  challenge_category = # use faker to fake an category
+  challenge_desc = # use faker to fake an discreption
+  challenge_coins = # random integer coins
+  challenge_part_num = # random integer participat number
+  challenge_fail_num = # random integer failed number
+
+  # make sure the duration and deadline make sense
+  challenge_deadline = # use faker to fake an datetime deadline
+  challenge_duration = # random integer duration# 
+  
+  challenges.push({ name: challenge_name, description: challenge_desc,
+                    category: challenge_category, coins: challenge_coins,
+                    participant_number: challenge_part_num, failed_number: challenge_fail_num,
+                    duration: challenge_duration, deadline: challenge_deadline
+             })
+end
+User.import columns, users, validate: false
+
+
+# fake participate_in
+ParticipateIn.delete_all
+participate_ins = []
+columns = [:user_id, :challenge_id, :continuous_check_in, :failed, :finished]
+
+10.times do
+  user = User.all.sample.id,
+  challenge = Challenge.all.sample.id
+  # TODO check if no duplicate user-challenge pair
+  check_in = # random interger, make sure <= challenge duration
+  part_failed = # boolean
+  part_finished = # boolean, must be true if check-in = challenge duration
+           # must be false if failed = true
+  participate_ins.push({user_id: user, challenge_id: challenge, :continuous_check_in: checkin
+                        failed: part_failed, finished: part_finished
+                  })
+end
+ParticipateIn.import columns, participate_ins, validate: false
+
+
+# fake histories
+History.delete_all
+histories = []
+columns = [:user_id, :challenge_id, :continuous_check_in, :finished]
+
+10.times do
+  user = User.all.sample.id,
+  challenge = Challenge.all.sample.id
+  # TODO check if no duplicate user-challenge pair, and not in participate_in
+  check_in = # random interger, make sure <= challenge duration
+  part_finished = # boolean, must be true if check-in = challenge duration
+
+  histories.push({user_id: user, challenge_id: challenge, :continuous_check_in: checkin
+                        finished: part_finished
+                  })
+end
+History.import columns, histories, validate: false
+
+
+# fake favorites
+Favorite.delete_all
+favorites = []
+columns = [:user_id, :challenge_id]
+
+10.times do
+  user = User.all.sample.id,
+  challenge = Challenge.all.sample.id
+  # TODO check if no duplicate user-challenge pair, and not in participate_in nor histories
+  favorites.push({user_id: user, challenge_id: challenge})
+end
+
+Favorite.import columns, favorites, validate: false

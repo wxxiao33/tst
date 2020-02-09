@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  category: MyString
+  description: MyText
+  coins: 1
+  duration: 1
+  participant_number: 1
+  failed_number: 1
+  deadline: 2020-02-08 19:14:48
+
+two:
+  name: MyString
+  category: MyString
+  description: MyText
+  coins: 1
+  duration: 1
+  participant_number: 1
+  failed_number: 1
+  deadline: 2020-02-08 19:14:48

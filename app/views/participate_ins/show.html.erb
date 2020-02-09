@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @participate_in.user_id %>
+</p>
+
+<p>
+  <strong>Challenge:</strong>
+  <%= @participate_in.challenge_id %>
+</p>
+
+<p>
+  <strong>Continuous check in:</strong>
+  <%= @participate_in.continuous_check_in %>
+</p>
+
+<p>
+  <strong>Failed:</strong>
+  <%= @participate_in.failed %>
+</p>
+
+<p>
+  <strong>Finished:</strong>
+  <%= @participate_in.finished %>
+</p>
+
+<%= link_to 'Edit', edit_participate_in_path(@participate_in) %> |
+<%= link_to 'Back', participate_ins_path %>
