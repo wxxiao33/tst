@@ -5,6 +5,6 @@ class Challenge < ApplicationRecord
   has_many :challenges, through: :histories
   has_many :participate_ins
   has_many :challenges, through: :participate_ins
-  # validates :name, :category, :description, :coins, :duration, :deadline :presence => true
-  # validates :name, :uniqueness => { :case_sensitive => false }
+  validates :name, :category, :description, :coins, :duration, :deadline, :presence => true
+  validates :name, :uniqueness => { :case_sensitive => false }
 end
