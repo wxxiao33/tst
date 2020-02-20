@@ -11,7 +11,8 @@ default: &default
 
 development:
   <<: *default
-  username: anyan
+  # username: anyan
+  username: <%= ENV['one_day_challenge_USERNAME'] %>
   database: one_day_challenge_development
   password: <%= ENV['one_day_challenge_DATABASE_PASSWORD'] %>
 
@@ -20,12 +21,15 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  username: anyan
+  # username: anyan
+  username: <%= ENV['one_day_challenge_USERNAME'] %>
   database: one_day_challenge_test
   password: <%= ENV['one_day_challenge_DATABASE_PASSWORD'] %>
 
 production:
   <<: *default
   database: one_day_challenge_production
-  username: anyan
+  # username: anyan
+  password: <%= ENV['one_day_challenge_DATABASE_PASSWORD'] %>
+  username: one_day_challenge
   password: <%= ENV['one_day_challenge_DATABASE_PASSWORD'] %>

@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
+  get 'home_page/home'
   resources :participate_ins
   resources :histories
   resources :favorites
   resources :challenges
   resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  # Rails.application.routes.draw do 
-  # resources :participate_ins
-  # resources :histories
-  # resources :favorites
-  root 'application#hello' 
-  # end 
+
+  root 'home_page#home' 
+  get '/new_user', to: 'users#new'
+  get '/new_challenge', to: 'challenges#new'
 end
