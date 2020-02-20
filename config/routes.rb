@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :users
 
   root 'home_page#home' 
+  get '/new_user', to: 'users#new'
+  get '/new_challenge', to: 'challenges#new'
 end
