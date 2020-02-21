@@ -6,27 +6,43 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'faker'
+require 'random/password'
+include RandomPassword
+
 # fake users
 User.delete_all
 users = []
-columns = [:name, :email, :password, :coins, :chechin_number, :challenge_number]
+columns = [:name, :email, :password, :password_confirmation, 
+           :coins, :chechin_number, :challenge_number]
 
-i = 0
-25.times do
-  # TODO
-  user_name = (Faker::Hacker.noun).capitalize
-  i = i + 1
-  user_email = "#{i}"# use faker to fake an email, make sure it's unqiue
-  user_password = "#{i}"# faker a password, make sure it's unique
-  user_coins = i # non-negative number of coins
-  user_checkin_number = i# non-negative number of checkins
-  user_challenge_number = i# non-negative number of checkins
-  users.push({ name: user_name, email: user_email, password: user_password,
-               coins: user_coins, chechin_number: user_checkin_number,
-               challenge_number: user_challenge_number 
-        })
+# i = 0
+# 25.times do
+#   # TODO
+#   user_name = (Faker::Hacker.noun).capitalize
+#   i = i + 1
+#   user_email = Faker::Internet.email # use faker to fake an email, make sure it's unqiue
+#   user_password = generate(16) # use RandomPassword to fake a password with len = 16
+#   user_coins = rand(250) # random coins number from 0 - 250
+#   user_checkin_number = rand(100) # non-negative number of checkins
+#   user_challenge_number = rand(50) # non-negative number of challenges
+#   users.push({ name: user_name, email: user_email, 
+#                password: user_password, password_confirmation: user_password,
+#                coins: user_coins, chechin_number: user_checkin_number,
+#                challenge_number: user_challenge_number })
+# end
+# User.import columns, users, validate: false
+10.times do
+  password = generate(16)
+  User.create!(name: Faker::Name.name, 
+               email: Faker::Internet.email, 
+               password: password, 
+               password_confirmation: password,
+               chechin_number: rand(100),
+               challenge_number: rand(50),
+               coins: rand(250))
 end
-User.import columns, users, validate: false
+
 
 # fake challenges
 Challenge.delete_all

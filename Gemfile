@@ -18,6 +18,8 @@ gem 'better_errors'
 gem 'awesome_print'
 gem 'faker'
 gem 'hirb'
+gem 'bcrypt',     '3.1.13'
+gem 'random-password'
 
 group :development, :test do
   gem 'byebug',  '11.0.1', platforms: [:mri, :mingw, :x64_mingw]
