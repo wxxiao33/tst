@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     @user = User.new(init_params)
     if @user.save
       # Handle a successful save.
+      log_in @user
       flash[:success] = "Welcome to One Day Challenge!"
       redirect_to @user
       

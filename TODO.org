@@ -2,4 +2,11 @@
 #+TITLE: TODO List
 
 * TODO Validation rule for data
+** Need original user password for test
+    User fixture for now
+
 * TODO HTML and CSS
+** The views are still using bootstrap 3, since some current features are not availble in bootstrap 4.
+** Dropdown memu does not work for boostrap 4
+    checkout RORT 8.2.3
+** The logo has a strange hover effect
