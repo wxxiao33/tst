@@ -12,29 +12,17 @@ require 'csv'
 require 'open-uri'
 include RandomPassword
 
-# fake users
-User.delete_all
-# users = []
-# columns = [:name, :email, :password, :password_confirmation, 
-#            :coins, :chechin_number, :challenge_number]
 
-# i = 0
-# 25.times do
-#   # TODO
-#   user_name = (Faker::Hacker.noun).capitalize
-#   i = i + 1
-#   user_email = Faker::Internet.email # use faker to fake an email, make sure it's unqiue
-#   user_password = generate(16) # use RandomPassword to fake a password with len = 16
-#   user_coins = rand(250) # random coins number from 0 - 250
-#   user_checkin_number = rand(100) # non-negative number of checkins
-#   user_challenge_number = rand(50) # non-negative number of challenges
-#   users.push({ name: user_name, email: user_email, 
-#                password: user_password, password_confirmation: user_password,
-#                coins: user_coins, chechin_number: user_checkin_number,
-#                challenge_number: user_challenge_number })
-# end
-# User.import columns, users, validate: false
-10.times do
+# define parameters
+user_num = 30 # number of users in the database
+participate_max = 10 # number of MAX actively-envolved challenges for each user
+history_max = 10 # number of MAX finished challenges for each user
+favorite_max = 5 # number of MAX favorite challenges for each user
+
+
+################# fake users #################
+User.delete_all
+user_num.times do
   password = generate(16)
   User.create!(name: Faker::Name.name, 
                email: Faker::Internet.email, 
@@ -45,102 +33,95 @@ User.delete_all
                coins: rand(250))
 end
 
-
-# fake challenges
+################# fake challenges #################
 Challenge.delete_all
 # link to live google sheet in cvs format
 csv_path = "https://docs.google.com/spreadsheets/d/12iXky8WcK-Lbvuxp6eeOxoL5aAlSNinPKJrisbyq_Gw/gviz/tq?tqx=out:csv"
 csv = CSV.parse(open(csv_path), :headers=>true)
-csv.each do |row|
-  Challenge.create!(name: row["tittle"], 
-                    category: row["category"], 
-                    description: row['description'], 
-                    coins: row["coins"].to_i,
-                    participant_number: 0,
-                    failed_number: 0,
-                    duration: row["duration"].to_i,
-                    deadline: Faker::Date.in_date_period(year: 2020, month: 5 + rand(4)),
-                    pic_link: row["pic"])
+
+# take 3/4 challenges to be currently active challenges (deadline -> future date)
+active_challenges = []
+csv[(0...(csv.size*3/4))].each do |row|
+  active_challenges << Challenge.create!(
+    name: row["tittle"], 
+    category: row["category"], 
+    description: row['description'], 
+    coins: row["coins"].to_i,
+    participant_number: 0,
+    failed_number: 0,
+    duration: row["duration"].to_i,
+    deadline: Faker::Date.in_date_period(year: 2020, month: 5 + rand(4)),
+    pic_link: row["pic"])
 end
 
-# challenges = []
-# columns = [:name, :category, :description, :coins, :participant_number, 
-#               :failed_number, :duration, :deadline
-#             ]
-
-# 25.times do
-#   challenge_name = (Faker::Hacker.ingverb + " " + Faker::Hacker.noun + "s").capitalize
-#   # TODO
-#   challenge_category = "Cate"# use faker to fake an category
-#   challenge_desc = "A"# use faker to fake an discreption
-#   challenge_coins = 1# random integer coins
-#   challenge_part_num = 1# random integer participat number
-#   challenge_fail_num = 1# random integer failed number
-
-#   # make sure the duration and deadline make sense
-#   challenge_deadline = Time.now# use faker to fake an datetime deadline
-#   challenge_duration = 1# random integer duration# 
-  
-#   ch = { name: challenge_name, category: challenge_category, description: challenge_desc,
-#                     coins: challenge_coins,
-#                     participant_number: challenge_part_num, failed_number: challenge_fail_num,
-#                     duration: challenge_duration, deadline: challenge_deadline
-#              }
-#   puts ch
-#   challenges.push(ch)
-# end
-# Challenge.import columns, challenges, validate: false
+# take 1/4 challenges to be archived challenges (deadline -> past date)
+archived_challenges = []
+csv[((csv.size*3/4)..csv.size)].each do |row|
+  archived_challenges << Challenge.create!(
+    name: row["tittle"], 
+    category: row["category"], 
+    description: row['description'], 
+    coins: row["coins"].to_i,
+    participant_number: 0,
+    failed_number: 0,
+    duration: row["duration"].to_i,
+    deadline: Faker::Date.backward(days: 14),
+    pic_link: row["pic"])
+end
 
 
-# fake participate_in
+################# fake participate_ins, histories and favorites #################
 ParticipateIn.delete_all
-participate_ins = []
-columns = [:user_id, :challenge_id, :continuous_check_in, :failed, :finished]
 
-10.times do
-  user = User.all.sample.id,
-  challenge = Challenge.all.sample.id
-  # TODO check if no duplicate user-challenge pair
-  check_in = 1# random interger, make sure <= challenge duration
-  part_failed = 1 # boolean
-  part_finished = 1# boolean, must be true if check-in = challenge duration
-           # must be false if failed = true
-  participate_ins.push({user_id: user, challenge_id: challenge, continuous_check_in: check_in,
-                        failed: part_failed, finished: part_finished
-                  })
-end
-ParticipateIn.import columns, participate_ins, validate: false
-
-
-# fake histories
-History.delete_all
-histories = []
-columns = [:user_id, :challenge_id, :continuous_check_in, :finished]
-
-10.times do
-  user = User.all.sample.id,
-  challenge = Challenge.all.sample.id
-  # TODO check if no duplicate user-challenge pair, and not in participate_in
-  check_in = 1# random interger, make sure <= challenge duration
-  part_finished = 1# boolean, must be true if check-in = challenge duration
-
-  histories.push({user_id: user, challenge_id: challenge, continuous_check_in: check_in,
-                        finished: part_finished
-                  })
-end
-History.import columns, histories, validate: false
-
-
-# fake favorites
-Favorite.delete_all
-favorites = []
-columns = [:user_id, :challenge_id]
-
-10.times do
-  user = User.all.sample.id,
-  challenge = Challenge.all.sample.id
-  # TODO check if no duplicate user-challenge pair, and not in participate_in nor histories
-  favorites.push({user_id: user, challenge_id: challenge})
+def get_new_challenge used_challenges, all_challenges
+  # get a new challenge from all_challenge but not in used_challenge
+  challenge = all_challenges.sample
+  while used_challenges.include? challenge.id
+    challenge = all_challenges.sample
+  end
+  used_challenges << challenge.id
+  return used_challenges, challenge
 end
 
-Favorite.import columns, favorites, validate: false
+users = User.all
+users.each do |user|
+  used_challenges = []
+
+  # create user's participate_ins
+  rand(participate_max).times do
+    # pick a new challenge from active_challenges
+    used_challenges, challenge = get_new_challenge(used_challenges, active_challenges)
+    # create corresponding participate_in object
+    check_in = rand(challenge.duration + 1)
+    ParticipateIn.create!(
+      user_id: user.id,
+      challenge_id: challenge.id,
+      continuous_check_in: check_in,
+      failed: [true, false].sample,
+      finished: check_in == challenge.duration ? true : false)
+  end
+
+  # create user's favorites
+  rand(favorite_max).times do
+    # pick a new challenge from active_challenges
+    used_challenges, challenge = get_new_challenge(used_challenges, active_challenges)
+    # create corresponding favorite object
+    Favorite.create!(
+      user_id: user.id,
+      challenge_id: challenge.id,
+  end
+
+  # create user's histories
+  rand(history_max).times do
+    # pick a new challenge from active_challenges
+    used_challenges, challenge = get_new_challenge(used_challenges, archived_challenges)
+    # create corresponding participate_in object
+    check_in = rand(challenge.duration + 1)
+    ParticipateIn.create!(
+      user_id: user.id,
+      challenge_id: challenge.id,
+      continuous_check_in: check_in,
+      failed: [true, false].sample,
+      finished: check_in == challenge.duration ? true : false)
+  end
+end

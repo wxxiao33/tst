@@ -1,10 +1,11 @@
 class User < ApplicationRecord
-  has_many :favorites
-  has_many :challenges, through: :favorites
-  has_many :histories
-  has_many :challenges, through: :histories
   has_many :participate_ins
   has_many :challenges, through: :participate_ins
+  has_many :favorites
+  has_many :fav_challenges, through: :favorites, source: :challenges
+  has_many :histories
+  has_many :his_challenges, through: :histories, source: :challenges
+
 
   before_save { email.downcase! }
   validates :name, presence: true, uniqueness: true, length: {maximum: 50}
