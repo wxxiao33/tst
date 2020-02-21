@@ -8,13 +8,15 @@
 
 require 'faker'
 require 'random/password'
+require 'csv'
+require 'open-uri'
 include RandomPassword
 
 # fake users
 User.delete_all
-users = []
-columns = [:name, :email, :password, :password_confirmation, 
-           :coins, :chechin_number, :challenge_number]
+# users = []
+# columns = [:name, :email, :password, :password_confirmation, 
+#            :coins, :chechin_number, :challenge_number]
 
 # i = 0
 # 25.times do
@@ -46,33 +48,48 @@ end
 
 # fake challenges
 Challenge.delete_all
-challenges = []
-columns = [:name, :category, :description, :coins, :participant_number, 
-              :failed_number, :duration, :deadline
-            ]
-
-25.times do
-  challenge_name = (Faker::Hacker.ingverb + " " + Faker::Hacker.noun + "s").capitalize
-  # TODO
-  challenge_category = "Cate"# use faker to fake an category
-  challenge_desc = "A"# use faker to fake an discreption
-  challenge_coins = 1# random integer coins
-  challenge_part_num = 1# random integer participat number
-  challenge_fail_num = 1# random integer failed number
-
-  # make sure the duration and deadline make sense
-  challenge_deadline = Time.now# use faker to fake an datetime deadline
-  challenge_duration = 1# random integer duration# 
-  
-  ch = { name: challenge_name, category: challenge_category, description: challenge_desc,
-                    coins: challenge_coins,
-                    participant_number: challenge_part_num, failed_number: challenge_fail_num,
-                    duration: challenge_duration, deadline: challenge_deadline
-             }
-  puts ch
-  challenges.push(ch)
+# link to live google sheet in cvs format
+csv_path = "https://docs.google.com/spreadsheets/d/12iXky8WcK-Lbvuxp6eeOxoL5aAlSNinPKJrisbyq_Gw/gviz/tq?tqx=out:csv"
+csv = CSV.parse(open(csv_path), :headers=>true)
+csv.each do |row|
+  Challenge.create!(name: row["tittle"], 
+                    category: row["category"], 
+                    description: row['description'], 
+                    coins: row["coins"].to_i,
+                    participant_number: 0,
+                    failed_number: 0,
+                    duration: row["duration"].to_i,
+                    deadline: Faker::Date.in_date_period(year: 2020, month: 5 + rand(4)),
+                    pic_link: row["pic"])
 end
-Challenge.import columns, challenges, validate: false
+
+# challenges = []
+# columns = [:name, :category, :description, :coins, :participant_number, 
+#               :failed_number, :duration, :deadline
+#             ]
+
+# 25.times do
+#   challenge_name = (Faker::Hacker.ingverb + " " + Faker::Hacker.noun + "s").capitalize
+#   # TODO
+#   challenge_category = "Cate"# use faker to fake an category
+#   challenge_desc = "A"# use faker to fake an discreption
+#   challenge_coins = 1# random integer coins
+#   challenge_part_num = 1# random integer participat number
+#   challenge_fail_num = 1# random integer failed number
+
+#   # make sure the duration and deadline make sense
+#   challenge_deadline = Time.now# use faker to fake an datetime deadline
+#   challenge_duration = 1# random integer duration# 
+  
+#   ch = { name: challenge_name, category: challenge_category, description: challenge_desc,
+#                     coins: challenge_coins,
+#                     participant_number: challenge_part_num, failed_number: challenge_fail_num,
+#                     duration: challenge_duration, deadline: challenge_deadline
+#              }
+#   puts ch
+#   challenges.push(ch)
+# end
+# Challenge.import columns, challenges, validate: false
 
 
 # fake participate_in
