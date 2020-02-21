@@ -1,0 +1,5 @@
+#+OPTIONS: h:1 num:nil toc:nil
+#+TITLE: TODO List
+
+* TODO Validation rule for data
+* TODO HTML and CSS

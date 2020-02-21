@@ -34,10 +34,14 @@ User.delete_all
 #                challenge_number: user_challenge_number })
 # end
 # User.import columns, users, validate: false
+i = 0
 10.times do
+  i = i + 1
   password = generate(16)
   User.create!(name: Faker::Name.name, 
-               email: Faker::Internet.email, 
+               # TODO
+               # changed email address for gravatar to work, setup this later
+               email: "#{i}@exmaple.com", 
                password: password, 
                password_confirmation: password,
                chechin_number: rand(100),

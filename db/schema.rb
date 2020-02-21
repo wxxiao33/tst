@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_191955) do
     t.integer "challenge_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "remember_digest"
   end
 
 end
