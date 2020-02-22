@@ -14,30 +14,26 @@ require 'ruby-progressbar'
 include RandomPassword
 
 
-# i = 0
-# 25.times do
-#   # TODO
-#   user_name = (Faker::Hacker.noun).capitalize
-#   i = i + 1
-#   user_email = Faker::Internet.email # use faker to fake an email, make sure it's unqiue
-#   user_password = generate(16) # use RandomPassword to fake a password with len = 16
-#   user_coins = rand(250) # random coins number from 0 - 250
-#   user_checkin_number = rand(100) # non-negative number of checkins
-#   user_challenge_number = rand(50) # non-negative number of challenges
-#   users.push({ name: user_name, email: user_email, 
-#                password: user_password, password_confirmation: user_password,
-#                coins: user_coins, chechin_number: user_checkin_number,
-#                challenge_number: user_challenge_number })
-# end
-# User.import columns, users, validate: false
-i = 0
-10.times do
-  i = i + 1
+# define parameters
+user_num = 30 # number of users in the database
+challenge_num = 29 # number of challenges in the db (need to match length of google sheet)
+participate_max = 5 # number of MAX actively-envolved challenges for each user
+history_max = 4 # number of MAX finished challenges for each user
+favorite_max = 4 # number of MAX favorite challenges for each user
+# link to live google sheet of challenges in cvs format
+csv_path = "https://docs.google.com/spreadsheets/d/12iXky8WcK-Lbvuxp6eeOxoL5aAlSNinPKJrisbyq_Gw/gviz/tq?tqx=out:csv"
+
+################# fake users #################
+User.delete_all
+puts "Generating users..."
+progress_user = ProgressBar.create(
+  :title => "users", :starting_at => 0, :length => 100,
+  :total => user_num, :format => '%a |%b>>%i| %p%% %t',)
+user_num.times do
+  progress_user.increment
   password = generate(16)
   User.create!(name: Faker::Name.name, 
-               # TODO
-               # changed email address for gravatar to work, setup this later
-               email: "#{i}@exmaple.com", 
+               email: Faker::Internet.email, 
                password: password, 
                password_confirmation: password,
                chechin_number: rand(100),
