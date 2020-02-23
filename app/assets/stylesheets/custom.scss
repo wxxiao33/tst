@@ -78,6 +78,12 @@ p {
   line-height: 1.7em;
 }
 
+/* home */
+#add_btn {
+  float: right;
+
+}
+
 /* header */
 
 #logo {
@@ -89,15 +95,16 @@ p {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
-  // &:hover {
-  //   color: #fff;
-  //   text-decoration: none;
-  // }
+  &:hover {
+    color: gray;
+    text-decoration: none;
+  }
 }
 
 // img {
 //   display: none;
 // }
+
 /* footer */
 
 // footer {

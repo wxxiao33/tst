@@ -19,9 +19,9 @@
   </thead>
 
   <tbody>
-    <% @challenges.each do |challenge| %>
+    <% @challenges[0...5].each do |challenge| %>
       <tr>
-        <td><%= challenge.name %></td>
+        <td><%= link_to challenge.name, challenge %></td>
         <td><%= challenge.category %></td>
         <td><%= challenge.description %></td>
         <td><%= challenge.coins %></td>
@@ -29,9 +29,9 @@
         <td><%= challenge.participant_number %></td>
         <td><%= challenge.failed_number %></td>
         <td><%= challenge.deadline %></td>
-        <td><%= link_to 'Show', challenge %></td>
+        <!-- <td><%= link_to 'Show', challenge %></td> -->
         <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
-        <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>
@@ -39,4 +39,4 @@
 
 <br>
 
-<%= link_to 'New Challenge', new_challenge_path %>
+<%= render 'shared/add_btn'%>
