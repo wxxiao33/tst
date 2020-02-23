@@ -16,6 +16,13 @@ TODO
 
 - The logo has a strange hover effect
 
+
+FIXME
+
+- Logout doesn't work on Heroku
+
+
+
 Things you may want to cover:
 
 - Ruby version
