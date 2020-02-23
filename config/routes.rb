@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   get 'sessions/new'
-  get 'home_page/home'
+  get 'pages/home'
   resources :participate_ins
   resources :histories
   resources :favorites
   resources :challenges
   resources :users
 
-  root 'home_page#home' 
+  root 'pages#home' 
   get '/signup', to: 'users#new'
   get '/new_challenge', to: 'challenges#new'
   get    '/login',   to: 'sessions#new'
