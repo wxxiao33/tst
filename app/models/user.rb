@@ -4,9 +4,9 @@ class User < ApplicationRecord
   has_many :participate_ins
   has_many :challenges, through: :participate_ins
   has_many :favorites
-  has_many :fav_challenges, through: :favorites, source: :challenges
+  has_many :fav_challenges, through: :favorites, source: :challenge
   has_many :histories
-  has_many :his_challenges, through: :histories, source: :challenges
+  has_many :his_challenges, through: :histories, source: :challenge
 
 
   before_save { email.downcase! }
