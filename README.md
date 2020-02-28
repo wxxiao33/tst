@@ -22,6 +22,9 @@ FIXME
 - Logout doesn't work on Heroku
 
 
+heroku: https://one-day-brandeis.herokuapp.com/
+
+
 
 Things you may want to cover:
 
