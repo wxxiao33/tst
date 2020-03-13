@@ -14,5 +14,9 @@ Rails.application.routes.draw do
   get    '/login',         to: 'sessions#new'
   post   '/login',         to: 'sessions#create'
   delete '/logout',        to: 'sessions#destroy'
+ 
+  post '/participate/:challenge_id', to: 'users#participate'
+  post '/drop/:challenge_id', to: 'users#drop'
+
 
 end
