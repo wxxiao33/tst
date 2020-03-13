@@ -68,6 +68,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def participate
+    if ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).size >= 1
+      flash[:warning] = "You're already in the challenge!"
+    else
+      ParticipateIn.create(user_id: current_user.id, challenge_id: params[:challenge_id])
+      flash[:success] = 'Challenge participated!'
+    end
+    redirect_to root_path
+  end
+
+  def drop
+    ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy
+    flash[:success] = 'Challenge successfully dropped!'
+    redirect_to root_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
