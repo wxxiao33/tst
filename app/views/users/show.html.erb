@@ -46,15 +46,16 @@
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
 
-<h3 class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    Active Challenges<b class="caret"></b>
-  </a>
-  <ul class="dropdown-menu">
-    <% @user.challenges.all.each do |challenge| %>
-      <li><%= link_to challenge.name, challenge %></li>
-    <% end %>
-  </ul>
-</h3>
-
+<% if !@user.challenges.empty? %>
+  <h3 class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      Active Challenges<b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <% @user.challenges.all.each do |challenge| %>
+        <li><%= link_to challenge.name, challenge %></li>
+      <% end %>
+    </ul>
+  </h3>
+<% end %>
 <%= render 'shared/add_btn'%>
