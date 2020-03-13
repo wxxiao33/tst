@@ -19,7 +19,7 @@
   </thead>
 
   <tbody>
-    <% @challenges[0...5].each do |challenge| %>
+    <% @challenges.each do |challenge| %>
       <tr>
         <td><%= link_to challenge.name, challenge %></td>
         <td><%= challenge.category %></td>

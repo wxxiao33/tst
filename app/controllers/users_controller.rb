@@ -75,13 +75,13 @@ class UsersController < ApplicationController
       ParticipateIn.create(user_id: current_user.id, challenge_id: params[:challenge_id])
       flash[:success] = 'Challenge participated!'
     end
-    redirect_to root_path
+    redirect_to current_user
   end
 
   def drop
     ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy
     flash[:success] = 'Challenge successfully dropped!'
-    redirect_to root_path
+    redirect_to current_user
   end
 
   private
@@ -91,13 +91,13 @@ class UsersController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    # def user_params
-    #   params.require(:user).permit(:name, :email, :password, :coins, :chechin_number, :challenge_number)
-    # end
-    
-    
     def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :coins, :chechin_number, :challenge_number)
     end
+    
+    
+    # def user_params
+    #   params.require(:user).permit(:name, :email, :password,
+    #                                :password_confirmation)
+    # end
 end
