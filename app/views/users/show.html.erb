@@ -1,4 +1,5 @@
 <% provide(:title, @user.name) %>
+<!-- 
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
@@ -8,54 +9,97 @@
       </h1>
     </section>
   </aside>
-</div>
+</div> -->
 
 
 <p id="notice"><%= notice %></p>
+  <!-- Page Content -->
+  <div class="container">
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      <h1 class="display-3">A Warm Welcome, <%= @user.name %>!</h1>
+      <p class="lead">
+        <strong>Email: </strong><%= @user.email %>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Chechin number:</strong><%= @user.chechin_number %><br/>
+        <strong>Coins:</strong><%= @user.coins %>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Challenge number: </strong><%= @user.challenge_number %>
+      </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+      <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
-<p>
-  <strong>Coins:</strong>
-  <%= @user.coins %>
-</p>
-
-<p>
-  <strong>Chechin number:</strong>
-  <%= @user.chechin_number %>
-</p>
-
-<p>
-  <strong>Challenge number:</strong>
-  <%= @user.challenge_number %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-
-<% if !@user.challenges.empty? %>
-  <h3 class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-      Active Challenges<b class="caret"></b>
-    </a>
-    <ul class="dropdown-menu">
-      <% @user.challenges.all.each do |challenge| %>
-        <li><%= link_to challenge.name, challenge %></li>
+      <% if !@user.challenges.empty? %>
+        <h3 class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Active Challenges<b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <% @user.challenges.all.each do |challenge| %>
+              <li><%= link_to challenge.name, challenge %></li>
+            <% end %>
+          </ul>
+        </h3>
       <% end %>
-    </ul>
-  </h3>
-<% end %>
+    </header>
+
+    <!-- Page Features -->
+    <div class="row text-center">
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Card title</h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+
 <%= render 'shared/add_btn'%>
