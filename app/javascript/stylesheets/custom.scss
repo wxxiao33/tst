@@ -80,7 +80,6 @@ section {
 /* home */
 #add_btn {
   float: right;
-
 }
 
 /* header */
@@ -100,6 +99,16 @@ section {
   }
 }
 
+#navbar {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 90px 10px;
+  transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+}
 
 /* sidebar */
 
