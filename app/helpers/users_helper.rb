@@ -5,4 +5,13 @@ module UsersHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
+
+  def welcome(user)
+  	if current_user?(user)
+  		"A Warm Welcome, #{user.name}!"
+  	else
+  		user.name
+  	end
+  end
+
 end

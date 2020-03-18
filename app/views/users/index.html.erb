@@ -8,7 +8,6 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Password</th>
       <th>Coins</th>
       <th>Chechin number</th>
       <th>Challenge number</th>
@@ -19,15 +18,14 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
+        <td><%= link_to user.name, user %></td>
         <td><%= user.email %></td>
-        <td><%= user.password %></td>
         <td><%= user.coins %></td>
         <td><%= user.chechin_number %></td>
         <td><%= user.challenge_number %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- <td><%= link_to 'Show', user %></td> -->
+<!--         <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>

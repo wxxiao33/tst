@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:edit, :update, :show, :index]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user,   only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -100,9 +100,14 @@ class UsersController < ApplicationController
     end
 
     # Confirms the correct user.
+    # FIXME: (kuanyu) why can user see others' edit button???
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      unless current_user?(@user)
+        flash[:danger] = "Please don't mess with others' profiles!"
+        # redirect_to root_url
+        redirect_to @user
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
