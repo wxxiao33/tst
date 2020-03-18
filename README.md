@@ -17,11 +17,6 @@ TODO
 - The logo has a strange hover effect
 
 
-FIXME
-
-- Logout doesn't work on Heroku
-
-
 heroku: https://one-day-brandeis.herokuapp.com/
 
 

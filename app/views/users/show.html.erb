@@ -20,14 +20,16 @@
     <header class="jumbotron my-4">
       <h1 class="display-3">A Warm Welcome, <%= @user.name %>!</h1>
       <p class="lead">
-        <strong>Email: </strong><%= @user.email %>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Chechin number:</strong><%= @user.chechin_number %><br/>
-        <strong>Coins:</strong><%= @user.coins %>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Challenge number: </strong><%= @user.challenge_number %>
+        <strong>Email: </strong><%= @user.email %><br/>
+        <strong>Chechin number:</strong><%= @user.chechin_number %><br/>
+        <strong>Coins:</strong><%= @user.coins %>&nbsp;&nbsp;&nbsp;&nbsp;
+        <!-- <strong>Challenge number: </strong><%= @user.challenge_number %> -->
       </p>
-
       <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
 
-      <% if !@user.challenges.empty? %>
-        <h3 class="dropdown">
+      <!-- Active Dropdown -->
+      <%# if !@user.challenges.empty? %>
+        <!-- <h3 class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             Active Challenges<b class="caret"></b>
           </a>
@@ -36,68 +38,74 @@
               <li><%= link_to challenge.name, challenge %></li>
             <% end %>
           </ul>
-        </h3>
-      <% end %>
+        </h3> -->
+      <%# end %>
     </header>
 
-    <!-- Page Features -->
+
+    <h1>Active Chanllenges</h1><br/> 
+
     <div class="row text-center">
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+      <% @user.challenges.all.each do |challenge| %>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card h-100">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title"><%= challenge.name %></h4>
+              <!-- <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4> -->
+              <p class="card-text"><%= challenge.description[0..100]+"..." %></p>
+            </div>
+            <div class="card-footer">
+              <%= link_to "Details", challenge, class: "btn btn-primary" %>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div>
-      </div>
-
+      <% end %>
     </div>
     <!-- /.row -->
 
+    <h1>Favorite Chanllenges</h1><br/> 
+
+    <div class="row text-center">
+      <% @user.favorites.all.each do |challenge| %>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card h-100">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title"><%= challenge.name %></h4>
+              <!-- <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4> -->
+              <p class="card-text"><%= challenge.description[0..100]+"..." %></p>
+            </div>
+            <div class="card-footer">
+              <%= link_to "Details", challenge, class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- /.row -->
+
+
+    <h1>Past Chanllenges</h1><br/> 
+
+    <div class="row text-center">
+      <% @user.histories.all.each do |challenge| %>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card h-100">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title"><%= challenge.name %></h4>
+              <!-- <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4> -->
+              <p class="card-text"><%= challenge.description[0..100]+"..." %></p>
+            </div>
+            <div class="card-footer">
+              <%= link_to "Details", challenge, class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- /.row -->
   </div>
   <!-- /.container -->
 
