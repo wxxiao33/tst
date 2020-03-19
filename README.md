@@ -7,7 +7,9 @@ TODO
 
 heroku: https://one-day-brandeis.herokuapp.com/
 
-Please run `./update_README.sh` before pushing.
+Please add `# FIXME` wherever you see something that needs fixing.
+
+Before pushing to master, run `./update_README.sh`.
 
 ==========FIXME==========
 
