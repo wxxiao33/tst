@@ -7,6 +7,8 @@ TODO
 
 heroku: https://one-day-brandeis.herokuapp.com/
 
+Please run `./update_README.sh` before pushing.
+
 ==========FIXME==========
 
 app/controllers/users_controller.rb:
