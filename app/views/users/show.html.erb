@@ -1,24 +1,24 @@
 <% provide(:title, @user.name) %>
 <p id="notice"><%= notice %></p>
-  <!-- Page Content -->
-  <div class="container">
+<!-- Page Content -->
+<div class="container">
 
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-      <!-- <h1 class="display-3">A Warm Welcome, <%= @user.name %>!</h1> -->
-      <h1 class="display-3"><%= welcome(@user) %></h1>
-      <p class="lead">
-        <strong>Email: </strong><%= @user.email %><br/>
-        <strong>Chechin number:</strong><%= @user.chechin_number %><br/>
-        <strong>Coins:</strong><%= @user.coins %>&nbsp;&nbsp;&nbsp;&nbsp;
-        <!-- <strong>Challenge number: </strong><%= @user.challenge_number %> -->
-      </p>
-      <% if current_user?(@user) %>
-        <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
-      <% end %>
-      <!-- Active Dropdown -->
-      <%# if !@user.challenges.empty? %>
-        <!-- <h3 class="dropdown">
+  <!-- Jumbotron Header -->
+  <header class="jumbotron my-4">
+    <!-- <h1 class="display-3">A Warm Welcome, <%= @user.name %>!</h1> -->
+    <h1 class="display-3"><%= welcome(@user) %></h1>
+    <p class="lead">
+      <strong>Email: </strong><%= @user.email %><br/>
+      <strong>Chechin number:</strong><%= @user.chechin_number %><br/>
+      <strong>Coins:</strong><%= @user.coins %>&nbsp;&nbsp;&nbsp;&nbsp;
+      <!-- <strong>Challenge number: </strong><%= @user.challenge_number %> -->
+    </p>
+    <% if current_user?(@user) %>
+      <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
+    <% end %>
+    <!-- Active Dropdown -->
+    <%# if !@user.challenges.empty? %>
+    <!-- <h3 class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             Active Challenges<b class="caret"></b>
           </a>
@@ -28,75 +28,75 @@
             <% end %>
           </ul>
         </h3> -->
-      <%# end %>
-    </header>
+    <%# end %>
+  </header>
 
 
-    <h1>Active Chanllenges</h1><br/> 
+  <h1>Active Challenges</h1><br/>
 
-    <div class="row text-center">
-      <% @user.challenges.all.each do |challenge| %>
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
-            <div class="card-body">
-              <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
-              <p class="card-text"><%= challenge.description[0..100]+"..." %></p>
-            </div><!-- 
+  <div class="row text-center">
+    <% @user.challenges.all.each do |challenge| %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
+          <div class="card-body">
+            <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
+            <p class="card-text"><%= challenge.description[0..100]+"..." %></p>
+          </div><!--
             <div class="card-footer">
               <%= link_to "Details", challenge, class: "btn btn-primary" %>
             </div> -->
-          </div>
         </div>
-      <% end %>
-    </div>
-    <!-- /.row -->
+      </div>
+    <% end %>
+  </div>
+  <!-- /.row -->
 
-    <h1>Past Chanllenges</h1><br/> 
+  <h1>Past Challenges</h1><br/>
+
+  <div class="row text-center">
+    <% @user.his_challenges.all.each do |challenge| %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
+          <div class="card-body">
+            <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
+            <!-- <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4> -->
+            <p class="card-text"><%= challenge.description[0..100]+"..." %></p>
+          </div>
+          <!-- <div class="card-footer">
+              <%= link_to "Details", challenge, class: "btn btn-primary" %>
+            </div> -->
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <!-- /.row -->
+
+  <% if current_user?(@user) %>
+
+    <h1>Favorite Challenges</h1><br/>
 
     <div class="row text-center">
-      <% @user.his_challenges.all.each do |challenge| %>
+      <% @user.fav_challenges.all.each do |challenge| %>
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card h-100">
             <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
             <div class="card-body">
               <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
-              <!-- <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4> -->
               <p class="card-text"><%= challenge.description[0..100]+"..." %></p>
             </div>
-            <!-- <div class="card-footer">
+            <div class="card-footer">
               <%= link_to "Details", challenge, class: "btn btn-primary" %>
-            </div> -->
+            </div>
           </div>
         </div>
       <% end %>
     </div>
     <!-- /.row -->
-
-    <% if current_user?(@user) %>
-
-      <h1>Favorite Chanllenges</h1><br/> 
-
-      <div class="row text-center">
-        <% @user.fav_challenges.all.each do |challenge| %>
-          <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-              <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
-              <div class="card-body">
-                <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
-                <p class="card-text"><%= challenge.description[0..100]+"..." %></p>
-              </div>
-              <div class="card-footer">
-                <%= link_to "Details", challenge, class: "btn btn-primary" %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <!-- /.row -->
-    <% end %>
-  </div>
-  <!-- /.container -->
+  <% end %>
+</div>
+<!-- /.container -->
 
 
 <%= render 'shared/add_btn'%>
