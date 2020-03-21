@@ -12,6 +12,33 @@ class ChallengesController < ApplicationController
   def show
   end
 
+  def search
+    text = params[:q]
+    puts text
+    challenge = params[:challenge_cate]
+    puts challenge
+    if text != ''
+      if challenge == "1"
+        @challenges = current_user.challenges.where('lower(name) like ?', "%#{text.downcase}%")
+      elsif challenge == "2"
+        @challenges = current_user.his_challenges.where('lower(name) like ?', "%#{text.downcase}%")
+      else
+        @challenges = current_user.fav_challenges.where('lower(name) like ?', "%#{text.downcase}%")
+      end
+      if @challenges.size == 0
+        redirect_to current_user
+        flash[:alert] = "challenge cannot be found"
+      else
+        render 'users/search'
+      end
+    else
+      flash[:alert] = "Cannot leave as blank"
+      redirect_to current_user
+    end
+
+
+  end
+
   # GET /challenges/new
   def new
     @challenge = Challenge.new
