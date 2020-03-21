@@ -75,6 +75,9 @@ class UsersController < ApplicationController
       flash[:warning] = "You're already in the challenge!"
     else
       ParticipateIn.create(user_id: current_user.id, challenge_id: params[:challenge_id])
+      if ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).size >= 1
+        Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy   
+      end
       flash[:success] = 'Challenge participated!'
     end
     redirect_to current_user
@@ -83,6 +86,25 @@ class UsersController < ApplicationController
   def drop
     ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy
     flash[:success] = 'Challenge successfully dropped!'
+    redirect_to current_user
+  end
+
+
+  def favorite
+    if ParticipateIn.where(user_id: current_user.id, challenge_id: params[:challenge_id]).size >= 1
+      flash[:warning] = "You're already in the challenge!"
+    elsif  Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).size >= 1
+      flash[:warning] = "You've already favorited challenge!"
+    else
+      Favorite.create(user_id: current_user.id, challenge_id: params[:challenge_id])
+      flash[:success] = 'Challenge favorited!'
+    end
+    redirect_to current_user
+  end
+
+  def unfavorite
+    Favorite.where(user_id: current_user.id, challenge_id: params[:challenge_id]).first.destroy
+    flash[:success] = 'Challenge successfully unfavorited!'
     redirect_to current_user
   end
 
