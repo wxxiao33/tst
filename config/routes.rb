@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   get     '/search',       to:  'challenges#search'
  
   post '/participate/:challenge_id', to: 'users#participate'
-  post '/drop/:challenge_id', to: 'users#drop'
+  delete '/drop/:challenge_id', to: 'users#drop'
 
+  post '/favorite/:challenge_id', to: 'users#favorite'
+  delete '/unfavorite/:challenge_id', to: 'users#unfavorite'
 
 end
