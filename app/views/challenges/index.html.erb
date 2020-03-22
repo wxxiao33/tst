@@ -3,7 +3,6 @@
 
 
 <main id="main">
-
   <!-- ======= Works Section ======= -->
   <section class="section site-portfolio">
     <div class="container">
@@ -15,13 +14,32 @@
         <div class="col-md-12 col-lg-6 text-left text-lg-right" data-aos="fade-up" data-aos-delay="100">
           <div id="filters" class="filters">
             <a href="#" data-filter="*" class="active">All</a>
-            <a href="#" data-filter=".web">Web</a>
-            <a href="#" data-filter=".design">Design</a>
-            <a href="#" data-filter=".branding">Branding</a>
-            <a href="#" data-filter=".photography">Photography</a>
+            <a href="#" data-filter=".Life">Life</a>
+            <a href="#" data-filter=".Workout">Workout</a>
+            <a href="#" data-filter=".Habbit">Habbit</a>
+            <a href="#" data-filter=".Study">Study</a>
+            <a href="#" data-filter=".philanthropy">Philanthropy</a>
           </div>
         </div>
       </div>
+
+      <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
+        <% @challenges.each do |challenge| %>
+          <div class="item <%= challenge.category%> col-sm-6 col-md-4 col-lg-4 mb-4">
+            <%= puts "###########################{challenge.category}"%>
+            <a href="/challenges/<%=challenge.id%>" class="item-wrap fancybox">
+              <div class="work-info">
+                <h3><%= challenge.name %></h3>
+                <span><%= challenge.coins %> coins</span>
+              </div>
+              <img src="<%= challenge.pic_link %>" alt="Image" class="img-fluid">
+              <%#= image_tag "img_1_big.jpg", class: "img-fluid" %>
+            </a>
+          </div> 
+        <% end %>
+      </div>
+
+
       <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
         <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
           <a href="work-single.html" class="item-wrap fancybox">
