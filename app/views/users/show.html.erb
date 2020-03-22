@@ -75,7 +75,9 @@
               </div>
             <div class="card-footer">
               <%= link_to "Details", challenge, class: "readmore" %>
-              <%= link_to 'Leave', "/drop/#{challenge.id}", class: 'readmore', method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% if current_user?(@user) %>
+                <%= link_to 'Leave', "/drop/#{challenge.id}", class: 'readmore', method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
             </div>
             </div>
           </div>
