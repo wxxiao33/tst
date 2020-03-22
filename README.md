@@ -16,3 +16,12 @@ Before pushing to master, run `./update_README.sh`.
 app/controllers/users_controller.rb:
   * [103] (kuanyu) why can user see others' edit button???
 
+==========FIXME==========
+
+app/controllers/pages_controller.rb:
+  * [ 33] flash persists
+  * [ 39] flash persists
+
+app/controllers/users_controller.rb:
+  * [125] (kuanyu) why can user see others' edit button???
+

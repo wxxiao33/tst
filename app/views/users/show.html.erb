@@ -1,12 +1,10 @@
 <% provide(:title, @user.name) %>
 <p id="notice"><%= notice %></p>
 <!-- Page Content -->
-<div class="container">
 
 
   <!-- Jumbotron Header -->
   <header class="jumbotron my-4">
-    <!-- <h1 class="display-3">A Warm Welcome, <%= @user.name %>!</h1> -->
     <h1 class="display-3"><%= welcome(@user) %></h1>
     <p class="lead">
       <strong>Email: </strong><%= @user.email %><br/>
@@ -17,37 +15,39 @@
     <% if current_user?(@user) %>
       <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
     <% end %>
-    <!-- Active Dropdown -->
-    <%# if !@user.challenges.empty? %>
-    <!-- <h3 class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Active Challenges<b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <% @user.challenges.all.each do |challenge| %>
-              <li><%= link_to challenge.name, challenge %></li>
-            <% end %>
-          </ul>
-        </h3> -->
-    <%# end %>
   </header>
+<div class="container">
 
-  <%= form_with(url: "/search", method: :get, local: true) do %>
-    <div class="row align-items-start">
 
-      <div class="col col-4">
+   <%#= form_with(url: "/search", method: :get, local: true) do %>
+  <% if current_user?(@user) %>
+    <%= form_with(url: search_result_path, method: :get, remote: true) do |f| %>
 
-        <%= select_tag(:challenge_cate, raw('<option value="1">Active Challenges</option><option value="2">Past Challenges</option><option value="3">Favorite Challenges</option>'), class: "form-control") %>
-        <%#= collection_select(:subject, :id, @subjects, :id, :name, {prompt: 'Select Subject'}, class: "form-control") %>
+      <div class="row align-items-start">
+
+        <div class="col col-4">
+
+          <%= select_tag(:challenge_cate, raw('<option value="1">Active Challenges</option><option value="2">Past Challenges</option><option value="3">Favorite Challenges</option>'), class: "form-control") %>
+
+          <%#= select_tag(:challenge_cate, raw('<option value="1">Active Challenges</option><option value="2">Past Challenges</option><option value="3">Favorite Challenges</option>'), onchange: 'Rails.fire(this.form, "submit")', class: "form-control") %>
+          
+          <%#= collection_select(:subject, :id, @subjects, :id, :name, {prompt: 'Select Subject'}, class: "form-control") %>
+        </div>
+        <div class="col col-4">
+          <%= text_field_tag(:q, value = nil, options = {placeholder: "search challenge name",class: "form-control"}) %>
+        </div>
+        <div class="col col-4">
+          <%= f.submit "Search", class: "btn btn-primary" %>
+
+          <%#= submit_tag("Search", class: "btn btn-primary") %>
+        </div>
       </div>
-      <div class="col col-4">
-        <%= text_field_tag(:q, value = nil, options = {placeholder: "search challenge name",class: "form-control"}) %>
-      </div>
-      <div class="col col-4">
-        <%= submit_tag("Search", class: "btn btn-primary") %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+
+
+    <div id="search_result"></div>
+  <% end%>
+
   <ul class="nav nav-pills mb-3 justify-content-center nav-fill" id="pills-tab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Active
@@ -121,6 +121,9 @@
       </div>
     </div>
   </div>
+
+
+ 
 </div>
 
 

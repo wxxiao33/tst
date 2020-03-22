@@ -122,7 +122,6 @@ class UsersController < ApplicationController
     end
 
     # Confirms the correct user.
-    # FIXME: (kuanyu) why can user see others' edit button???
     def correct_user
       @user = User.find(params[:id])
       unless current_user?(@user)
