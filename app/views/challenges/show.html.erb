@@ -34,7 +34,10 @@
                   <li>Failed: <%= @challenge.failed_number %></li>
                 </ul>
 
-                <p><%= link_to 'Participate', "/participate/#{@challenge.id}", class: 'readmore', method: :post %></p>
+                <p>
+                  <%= link_to 'Participate', "/participate/#{@challenge.id}", class: 'readmore', method: :post %>
+                  <%= link_to 'Favorite', "/favorite/#{@challenge.id}", class: 'readmore', method: :post %>
+                </p>
               </div>
             </div>
           </div>
