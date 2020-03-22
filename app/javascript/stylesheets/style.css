@@ -258,8 +258,8 @@ h6,
   border-radius: 0;
   background: #f8f9fa;
   border: 1px solid transparent;
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  /* padding-top: 10px !important; */
+  /* padding-bottom: 10px !important; */
 }
 
 .form-control:active,
