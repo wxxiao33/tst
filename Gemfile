@@ -13,6 +13,11 @@ gem 'bootsnap',   '1.4.5', require: false
 gem 'activerecord-import'
 gem 'bootstrap-sass', '3.4.1'
 gem 'bootstrap',  '~>4.3.1'
+gem 'simple_form'
+gem 'momentjs-rails'
+gem 'bootstrap4-datetime-picker-rails'
+
+
 
 gem 'pry-byebug'
 gem 'better_errors'
