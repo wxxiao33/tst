@@ -8,7 +8,7 @@ require("turbolinks").start();
 require("@rails/activestorage").start();
 require("channels");
 // require.context('../../assets/images', true);
-
+require("jquery");
 
 // require vendor file
 
