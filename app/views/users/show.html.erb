@@ -3,143 +3,65 @@
 <!-- Page Content -->
 
 
-  <!-- Jumbotron Header -->
-  <header class="jumbotron my-4">
-    <div class="row">
-      <aside class="col-md-4">
-        <section class="user_info">
-          <h1>
-            <%= gravatar_for (@user) %>
-            <%= @user.name %>
-          </h1>
-        </section>
-      </aside>
-    </div>
-    <h1 class="display-3"><%= welcome(@user) %></h1>
-    <p class="lead">
-      <strong>Email: </strong><%= @user.email %><br/>
-      <strong>Checkin number:</strong><%= @user.chechin_number %><br/>
-      <strong>Coins:</strong><%= @user.coins %>&nbsp;&nbsp;&nbsp;&nbsp;
-      <!-- <strong>Challenge number: </strong><%= @user.challenge_number %> -->
-    </p>
-    <% if current_user?(@user) %>
-      <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
-    <% end %>
-  </header>
+<!-- Jumbotron Header -->
+<header class="jumbotron my-4">
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <h1>
+          <%= gravatar_for (@user) %>
+          <%= @user.name %>
+        </h1>
+      </section>
+    </aside>
+  </div>
+  <h1 class="display-3"><%= welcome(@user) %></h1>
+  <p class="lead">
+    <strong>Email: </strong><%= @user.email %><br/>
+    <strong>Checkin number:</strong><%= @user.chechin_number %><br/>
+    <strong>Coins:</strong><%= @user.coins %>&nbsp;&nbsp;&nbsp;&nbsp;
+    <!-- <strong>Challenge number: </strong><%= @user.challenge_number %> -->
+  </p>
+  <% if current_user?(@user) %>
+    <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
+  <% end %>
+</header>
 <div class="container">
 
 
-   <%#= form_with(url: "/search", method: :get, local: true) do %>
+  <%#= form_with(url: "/search", method: :get, local: true) do %>
   <% if current_user?(@user) %>
     <%= form_with(url: search_result_path, method: :get, remote: true) do |f| %>
 
       <div class="row align-items-start">
-
         <div class="col col-4">
-
-          <%= select_tag(:challenge_cate, raw('<option value="1">Active Challenges</option><option value="2">Past Challenges</option><option value="3">Favorite Challenges</option>'), class: "form-control") %>
-
-          <%#= select_tag(:challenge_cate, raw('<option value="1">Active Challenges</option><option value="2">Past Challenges</option><option value="3">Favorite Challenges</option>'), onchange: 'Rails.fire(this.form, "submit")', class: "form-control") %>
-
-          <%#= collection_select(:subject, :id, @subjects, :id, :name, {prompt: 'Select Subject'}, class: "form-control") %>
+          <%= select_tag(:challenge_cate,
+                         raw('<option value="1">Active Challenges</option><option value="2">Past Challenges</option><option value="3">Favorite Challenges</option>'),
+                         options = {class: "form-control", onchange: "doSearch()"}) %>
         </div>
         <div class="col col-4">
-          <%= text_field_tag(:q, value = nil, options = {placeholder: "search challenge name",class: "form-control"}) %>
+          <%= text_field_tag(:q, value = nil, options = {placeholder: "search challenge name", class: "form-control", onkeydown: "doSearch()"}) %>
         </div>
-        <div class="col col-4">
-          <%= f.submit "Search", class: "btn btn-primary" %>
-
+<!--        <div class="col col-4">-->
+          <%= f.submit "Search", class: "btn btn-primary", id: "search", style: "display:none" %>
           <%#= submit_tag("Search", class: "btn btn-primary") %>
-        </div>
+<!--        </div>-->
       </div>
     <% end %>
 
-
     <div id="search_result"></div>
-  <% end%>
-
-  <ul class="nav nav-pills mb-3 justify-content-center nav-fill" id="pills-tab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Active
-        Challenges</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Past
-        Challenges</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Favorite
-        Challenges</a>
-    </li>
-  </ul>
-  <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-      <div class="row text-center">
-        <% @user.challenges.all.each do |challenge| %>
-          <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-              <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
-              <div class="card-body">
-                <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
-                <p class="card-text"><%= challenge.description[0..100] + "..." %></p>
-              </div>
-            <div class="card-footer">
-              <%= link_to "Details", challenge, class: "readmore" %>
-              <% if current_user?(@user) %>
-                <%= link_to 'Leave', "/drop/#{challenge.id}", class: 'readmore', method: :delete, data: { confirm: 'Are you sure?' } %>
-              <% end %>
-            </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-      <div class="row text-center">
-        <% @user.his_challenges.all.each do |challenge| %>
-          <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-              <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
-              <div class="card-body">
-                <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
-                <!-- <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4> -->
-                <p class="card-text"><%= challenge.description[0..100] + "..." %></p>
-              </div>
-              <div class="card-footer">
-              <%= link_to "Details", challenge, class: "readmore" %>
-            </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-      <div class="row text-center">
-        <% @user.fav_challenges.all.each do |challenge| %>
-          <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-              <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
-              <div class="card-body">
-                <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
-                <p class="card-text"><%= challenge.description[0..100] + "..." %></p>
-              </div>
-              <div class="card-footer">
-                <%= link_to "Details", challenge, class: "readmore" %>
-                <%= link_to 'Unfavorite', "/unfavorite/#{challenge.id}", class: 'readmore', method: :delete, data: { confirm: 'Are you sure?' } %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-
+  <% end %>
 
 </div>
 
 
-
 <%= render 'shared/add_btn' %>
 
-
+<script>
+  function doSearch() {
+      document.getElementById("search").click();
+  }
+</script>
+<script>
+    doSearch();
+</script>

@@ -25,23 +25,23 @@ require("jquery");
 // require("jquery")
 // import "bootstrap";
 
-import $ from "jquery";
+// import $ from "jquery";
 import "bootstrap";
 import "../stylesheets/application";
 import "./custom";
 import "./home";
 import "./main";
 
-window.jQuery = $;
-window.$ = $;
+// window.jQuery = $;
+// window.$ = $;
 
-import "./vendor/jquery/jquery.min";
-import "./vendor/bootstrap/js/bootstrap.bundle.min";
-import "./vendor/jquery.easing/jquery.easing.min";
-import "./vendor/php-email-form/validate";
-import "./vendor/aos/aos";
-import "./vendor/isotope-layout/isotope.pkgd.min";
-import "./vendor/owl.carousel/owl.carousel.min";
+// import "./vendor/jquery/jquery.min";
+// import "./vendor/bootstrap/js/bootstrap.bundle.min";
+// import "./vendor/jquery.easing/jquery.easing.min";
+// import "./vendor/php-email-form/validate";
+// import "./vendor/aos/aos";
+// import "./vendor/isotope-layout/isotope.pkgd.min";
+// import "./vendor/owl.carousel/owl.carousel.min";
 
 // import "./main";
 

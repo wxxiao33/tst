@@ -1,49 +1,51 @@
 <main id="main">
 
-      <div class="container">
-        <div class="row mb-4 align-items-center">
-          <div class="col-md-6" data-aos="fade-up">
-            <h2><%= @challenge.name %></h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam necessitatibus incidunt ut officiis explicabo inventore.</p>
+  <div class="container">
+    <div class="row mb-4 align-items-center">
+      <div class="col-md-6" data-aos="fade-up">
+        <h2><%= @challenge.name %></h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam necessitatibus incidunt ut officiis
+          explicabo inventore.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-section pb-0">
+    <div class="container">
+      <div class="row align-items-stretch">
+        <div class="col-md-8" data-aos="fade-up">
+          <img src="<%= @challenge.pic_link %>" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-3 ml-auto" data-aos="fade-up" data-aos-delay="100">
+          <div class="sticky-content">
+            <h3 class="h3"><%= @challenge.category %></h3>
+            <p class="mb-4"><span class="text-muted">Created by: to be implemented</span></p>
+
+            <div class="mb-5">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illo, id recusandae molestias
+                illum unde pariatur, enim tempora.</p>
+            </div>
+
+            <h4 class="h4 mb-3">Statistics</h4>
+            <ul class="list-unstyled list-line mb-5">
+              <li>Coins: <%= @challenge.coins %></li>
+              <li>Duration: <%= @challenge.duration %> Days</li>
+              <li>Deadline: <%= @challenge.deadline %></li>
+              <li>Participant: <%= @challenge.participant_number %></li>
+              <li>Failed: <%= @challenge.failed_number %></li>
+            </ul>
+
+            <p>
+              <%= link_to 'Participate', "/participate/#{@challenge.id}", class: 'readmore', method: :post %>
+              <%= link_to 'Favorite', "/favorite/#{@challenge.id}", class: 'readmore', method: :post %>
+            </p>
           </div>
         </div>
       </div>
-
-      <div class="site-section pb-0">
-        <div class="container">
-          <div class="row align-items-stretch">
-            <div class="col-md-8" data-aos="fade-up">
-              <img src="<%= @challenge.pic_link %>" alt="Image" class="img-fluid">
-            </div>
-            <div class="col-md-3 ml-auto" data-aos="fade-up" data-aos-delay="100">
-              <div class="sticky-content">
-                <h3 class="h3"><%= @challenge.category %></h3>
-                <p class="mb-4"><span class="text-muted">Created by: to be implemented</span></p>
-
-                <div class="mb-5">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores illo, id recusandae molestias
-                    illum unde pariatur, enim tempora.</p>
-                </div>
-
-                <h4 class="h4 mb-3">Statistics</h4>
-                <ul class="list-unstyled list-line mb-5">
-                  <li>Coins: <%= @challenge.coins %></li>
-                  <li>Duration: <%= @challenge.duration %> Days</li>
-                  <li>Deadline: <%= @challenge.deadline %></li>
-                  <li>Participant: <%= @challenge.participant_number %></li>
-                  <li>Failed: <%= @challenge.failed_number %></li>
-                </ul>
-
-                <p>
-                  <%= link_to 'Participate', "/participate/#{@challenge.id}", class: 'readmore', method: :post %>
-                  <%= link_to 'Favorite', "/favorite/#{@challenge.id}", class: 'readmore', method: :post %>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="mb-5" style="margin-top: 25px">
-            <h3 class="h3">Description</h3>
-            <p><%= @challenge.description %></p>
-          </div>
-        </div>
+      <div class="mb-5" style="margin-top: 25px">
+        <h3 class="h3">Description</h3>
+        <p><%= @challenge.description %></p>
+      </div>
+    </div>
+  </div>
 </main><!-- End #main -->

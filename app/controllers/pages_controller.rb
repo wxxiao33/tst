@@ -14,36 +14,38 @@ class PagesController < ApplicationController
     puts text
     challenge = params[:challenge_cate]
     puts challenge
-    if text != ''
-      if challenge == "1"
+
+    if challenge == "1"
+      if text != ''
         @challenges = current_user.challenges.where('lower(name) like ?', "%#{text.downcase}%")
-      elsif challenge == "2"
+      else
+        @challenges = current_user.challenges
+      end
+    elsif challenge == "2"
+      if text != ''
         @challenges = current_user.his_challenges.where('lower(name) like ?', "%#{text.downcase}%")
       else
-        @challenges = current_user.fav_challenges.where('lower(name) like ?', "%#{text.downcase}%")
-      end
-      if @challenges.size == 0
-      	# FIXEME redirection error
-      	p "="*10
-      	p @challenges
-      	p "redirect1"
-      	p "="*10
-        # redirect_to root_path
-        # flash[:alert] = "challenge cannot be found"
-        # FIXME flash persists (kaunyu)
-        redirect_to current_user
-      else
-        render 'users/show'
+        @challenges = current_user.his_challenges
       end
     else
-      # FIXME flash persists (kuanyu)
-      # flash[:alert] = "Cannot leave as blank"
+      if text != ''
+        @challenges = current_user.fav_challenges.where('lower(name) like ?', "%#{text.downcase}%")
+      else
+        @challenges = current_user.fav_challenges
+      end
+    end
+    if @challenges.size == 0
+      # FIXEME redirection error
+      p "="*10
+      p @challenges
+      p "redirect1"
+      p "="*10
       # redirect_to root_path
-	    p "="*10
-	  	p @challenges
-	  	p "redirect2"
-	  	p "="*10
+      # flash[:alert] = "challenge cannot be found"
+      # FIXME flash persists (kaunyu)
       redirect_to current_user
+    else
+      render 'users/show'
     end
   end
 
