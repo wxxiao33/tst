@@ -29,7 +29,6 @@ require("jquery");
 import "bootstrap";
 import "../stylesheets/application";
 import "./custom";
-import "./home";
 import "./main";
 
 // window.jQuery = $;
