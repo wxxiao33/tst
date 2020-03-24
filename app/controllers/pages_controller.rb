@@ -35,11 +35,10 @@ class PagesController < ApplicationController
       end
     end
     if @challenges.size == 0
-      # FIXEME redirection error
-      p "="*10
-      p @challenges
-      p "redirect1"
-      p "="*10
+      # p "="*10
+      # p @challenges
+      # p "redirect1"
+      # p "="*10
       # redirect_to root_path
       # flash[:alert] = "challenge cannot be found"
       # FIXME flash persists (kaunyu)
