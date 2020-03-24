@@ -29,7 +29,6 @@ require("channels");
 import "bootstrap";
 import "../stylesheets/application";
 import "./custom";
-import "./main";
 
 // window.jQuery = $;
 // window.$ = $;
