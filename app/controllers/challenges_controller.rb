@@ -10,6 +10,7 @@ class ChallengesController < ApplicationController
   # GET /challenges/1
   # GET /challenges/1.json
   def show
+    # FIXME Should not be able to reparticicate (hide btn) (Anyan)
   end
 
   # GET /challenges/new
