@@ -9,7 +9,8 @@ class PagesController < ApplicationController
   end
 
   def result
-  	@user = current_user
+    current_user = User.find(params[:user_id])
+    puts current_user
     text = params[:q]
     puts text
     challenge = params[:challenge_cate]

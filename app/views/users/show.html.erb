@@ -30,9 +30,9 @@
 
 
   <%#= form_with(url: "/search", method: :get, local: true) do %>
-  <% if current_user?(@user) %>
+  <%# if current_user?(@user) %>
     <%= form_with(url: search_result_path, method: :get, remote: true) do |f| %>
-
+      <%=hidden_field_tag(:user_id, @user.id)%>
       <div class="row align-items-start">
         <div class="col col-4">
           <%= select_tag(:challenge_cate,
@@ -50,7 +50,7 @@
     <% end %>
 
     <div id="search_result"></div>
-  <% end %>
+  <%# end %>
 
 </div>
 
