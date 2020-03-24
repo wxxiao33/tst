@@ -1,4 +1,4 @@
-heroku: https://one-day-brandeis.herokuapp.com/
+heroku: https://quiet-tundra-62131.herokuapp.com/
 
 Please add `# FIXME` wherever you see something that needs fixing.
 
