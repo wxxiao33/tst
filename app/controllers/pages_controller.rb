@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    # FIXME navbar design: what (not) to show (Kuan-Yu)
   end
 
   def about

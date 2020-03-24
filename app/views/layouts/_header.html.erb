@@ -1,14 +1,53 @@
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar"> -->
     <div class="container">
-      <%= link_to "One Day Challenge", root_path, id: "logo", class: "navbar-brand" %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <% if request.fullpath == "/" %>
+        <%= link_to "One Day Challenge", "#page-top", id: "logo", class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <%= link_to "Services", "#services", class: "nav-link" %>
+          <%= link_to "Portfolio", "#portfolio", class: "nav-link" %>
+          <%= link_to "About", "#bout", class: "nav-link" %>
+          <%= link_to "Team", "#team", class: "nav-link" %>
+          <%= link_to "Contact", "#contact", class: "nav-link" %>
+
+          <%= link_to "Challenges", challenges_path, class: "nav-link" %>
+          <% if logged_in? %>
+            <li><%= link_to "Users", users_path, class: "nav-link" %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                Account <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Profile", current_user%></li>
+                <li><%= link_to "Settings", edit_user_path(current_user)%></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Log out", logout_path, method: :delete %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+
+
+            <li><%= link_to "Log in", login_path, class: "nav-link" %></li>
+          <% end %>
+        </ul>
+      </div>      
+      <% else %>
+        <%= link_to "One Day Challenge", root_path, id: "logo", class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+
+
+        <ul class="navbar-nav ml-auto">
           <%= link_to "Home", root_path, class: "nav-link" %>
-          <%= link_to "About", about_path, class: "nav-link" %>
           <%= link_to "Challenges", challenges_path, class: "nav-link" %>
         <% if logged_in? %>
           <li><%= link_to "Users", users_path, class: "nav-link" %></li>
@@ -30,5 +69,10 @@
         <% end %>
         </ul>
       </div>
+
+
+
+      <% end %>
+      
     </div>
   </nav>

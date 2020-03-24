@@ -30,6 +30,16 @@ import "bootstrap";
 import "../stylesheets/application";
 import "./custom";
 
+
+// Contact form JavaScript
+import "./js/jqBootstrapValidation.js";
+import "./js/contact_me.js";
+
+// Custom scripts for this template
+// import "./js/agency.min.js";
+import "./js/agency.js";
+
+
 // window.jQuery = $;
 // window.$ = $;
 

@@ -12,13 +12,19 @@
     <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%# <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> %>
     <%#= render 'layouts/test'%>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
   </head>
   <body>
     <div class="container">
       <!-- header -->
       <%= render 'layouts/header'%>
-      <p style="margin-top:200px;padding:15px 15px 10px;"></p>
-
+      <% if request.fullpath != "/" %>
+        <p style="margin-top:40px;padding:15px 15px 10px;"></p>
+      <% end %>
       <!-- error message -->
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
