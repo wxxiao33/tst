@@ -3,3 +3,6 @@ printf "Please add \`# FIXME\` wherever you see something that needs fixing.\n\n
 printf "Before pushing to master, run \`./update_README.sh\`.\n\n" >> README.md 
 printf '==========FIXME==========\n' >> README.md 
 rails notes:fixme >> README.md
+git add -A
+git commit -m "Update README.md"
+git push
