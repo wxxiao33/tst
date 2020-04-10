@@ -1,12 +1,13 @@
 class PagesController < ApplicationController
   def home
-    # FIXME navbar design: what (not) to show (Kuan-Yu)
     # FIXME navbar js glitches (Kuan-Yu)
     # FIXME navbar scroll to section doesn't work (Kuan-Yu)
-    # FIXME services icon not showing (Kuan-Yu)
-    # FIXME portfolio plus icon not showing (Kuan-Yu)
-    # FIXME footer icon not showing (Kuan-Yu)
-
+    # FIXME about icon not showing correctly (Kuan-Yu)
+    # FIXME portfolio section (Kuan-Yu)
+    # FIXME team description
+    # FIXME sign up form position (Kuan-Yu)
+    # FIXME sign up form error redirection (Kuan-Yu)
+    @user = User.new
   end
 
   def about

@@ -42,7 +42,11 @@ class UsersController < ApplicationController
       redirect_to @user
       
     else
-      render 'new'
+      if request.fullpath == "/"
+        render "/#contact"
+      else
+        render 'new'
+      end
     end
   end
 
