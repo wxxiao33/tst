@@ -1,37 +1,109 @@
 <% provide(:title, "Users") %>
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<div class="container">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Coins</th>
-      <th>Checkin number</th>
-      <th>Challenge number</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.name, user %></td>
-        <td><%= user.email %></td>
-        <td><%= user.coins %></td>
-        <td><%= user.chechin_number %></td>
-        <td><%= user.challenge_number %></td>
-        <!-- <td><%= link_to 'Show', user %></td> -->
-<!--         <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <h1>Leaderboard</h1>
+<hr></hr>
 
+<div id="exTab1"> 
+<ul class="nav nav-pills filters">
+      <li class="active">
+        <a href="#1a" data-toggle="tab">By Coins</a>
+      </li>
+      <li><a href="#2a" data-toggle="tab">By Check-Ins</a>
+      </li>
+      <li><a href="#3a" data-toggle="tab">By Challenges</a>
+      </li>
+
+    </ul>
+  <hr></hr>
+      <div class="tab-content clearfix">
+        <div class="tab-pane active" id="1a">
+          <h4>
+            <table class="table-striped text-center">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Stats</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% display_by("coins",@users).each_with_index do |user, i| %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= link_to user.name, user %></td>
+                  <td><%= user.coins %></td>
+                </tr>
+              <% end %>
+            </tbody>
+            </table>
+          </h4>
+        </div>
+
+        <div class="tab-pane" id="2a">
+          <h4>
+            <table class="table-striped text-center">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Stats</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% display_by("check_ins",@users).each_with_index do |user, i| %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= link_to user.name, user %></td>
+                  <td><%= user.chechin_number %></td>
+                </tr>
+              <% end %>
+            </tbody>
+            </table>
+          </h4>
+        </div>
+
+        <div class="tab-pane" id="3a">
+          <h4>
+            <table class="table-striped text-center">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Stats</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% display_by("challenges",@users).each_with_index do |user, i| %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= link_to user.name, user %></td>
+                  <td><%= user.challenge_number %></td>
+                </tr>
+              <% end %>
+            </tbody>
+            </table>
+          </h4>
+        </div>
+      </div>
+</div>
 <br>
 
 <%= link_to 'New User', new_user_path %>
 
+</div>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

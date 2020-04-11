@@ -14,4 +14,15 @@ module UsersHelper
   	end
   end
 
+  def display_by(key, users)
+    case key
+    when "coins"
+      users.sort_by { |user| -user.coins }
+    when "check_ins"
+      users.sort_by { |user| -user.chechin_number }
+    when "challenges"
+      users.sort_by { |user| -user.challenge_number }
+    end
+  end
+
 end

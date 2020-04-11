@@ -1,6 +1,7 @@
 <% provide(:title, @user.name) %>
 <p id="notice"><%= notice %></p>
 <!-- Page Content -->
+<div class="container">
 
 
 <!-- Jumbotron Header -->
@@ -26,7 +27,6 @@
     <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
   <% end %>
 </header>
-<div class="container">
 
 
   <%#= form_with(url: "/search", method: :get, local: true) do %>
@@ -51,11 +51,11 @@
 
     <div id="search_result"></div>
   <%# end %>
+<%= render 'shared/add_btn' %>
 
 </div>
 
 
-<%= render 'shared/add_btn' %>
 
 <script>
   function doSearch() {
