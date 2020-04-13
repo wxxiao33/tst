@@ -25,4 +25,12 @@ module UsersHelper
     end
   end
 
+  def participated?(user_id, challenge_id)
+    return ParticipateIn.where(user_id: user_id, challenge_id: challenge_id).size >= 1
+  end
+
+  def favorited?(user_id, challenge_id)
+    return Favorite.where(user_id: user_id, challenge_id: challenge_id).size >= 1
+  end
+
 end

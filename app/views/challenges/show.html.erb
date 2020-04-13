@@ -36,8 +36,17 @@
             </ul>
 
             <p>
-              <%= link_to 'Participate', "/participate/#{@challenge.id}", class: 'readmore', method: :post %>
-              <%= link_to 'Favorite', "/favorite/#{@challenge.id}", class: 'readmore', method: :post %>
+              <% if participated?(current_user.id, @challenge.id) %>
+                <%= link_to 'Unparticipate', "/drop/#{@challenge.id}", class: 'readmore', method: :delete %>
+              <% else %>
+                <%= link_to 'Participate', "/participate/#{@challenge.id}", class: 'readmore', method: :post %>
+              <% end %>
+
+              <% if favorited?(current_user.id, @challenge.id) %>
+                <%= link_to 'Unfavorite', "/unfavorite/#{@challenge.id}", class: 'readmore', method: :delete %>
+              <% else %>
+                <%= link_to 'Favorite', "/favorite/#{@challenge.id}", class: 'readmore', method: :post %>
+              <% end %>
             </p>
           </div>
         </div>
