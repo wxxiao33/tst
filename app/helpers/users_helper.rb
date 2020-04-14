@@ -33,4 +33,7 @@ module UsersHelper
     return Favorite.where(user_id: user_id, challenge_id: challenge_id).size >= 1
   end
 
+  def checkedIn?(user_id, challenge_id)
+    return ParticipateIn.where(user_id: user_id, challenge_id: challenge_id).first.updated_at == Date.today
+  end
 end

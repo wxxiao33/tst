@@ -8,10 +8,12 @@
             <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
             <p class="card-text"><%= challenge.description[0..100] + "..." %></p>
           </div>
-          <!--
+          <% if participated?(current_user.id, challenge.id) && !checkedIn?(current_user.id, challenge.id)%>
               <div class="card-footer">
-                <%= link_to "Details", challenge, class: "btn btn-primary" %>
-              </div> -->
+                <%#= link_to "Details", challenge, class: "btn btn-primary" %>
+                <%= render 'users/check_in'%>
+              </div>
+          <% end %>
         </div>
       </div>
     <% end %>
