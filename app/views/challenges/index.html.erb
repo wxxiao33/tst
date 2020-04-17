@@ -11,96 +11,235 @@
           <h2>Ready to challenge yourself?</h2>
           <p class="mb-0">Join millions of challenges around the world</p>
         </div>
-        <div class="col-md-12 col-lg-6 text-left text-lg-right" data-aos="fade-up" data-aos-delay="100">
-          <div id="filters" class="filters">
-            <a href="#" data-filter="*" class="active">All</a>
-            <a href="#" data-filter=".Life">Life</a>
-            <a href="#" data-filter=".Workout">Workout</a>
-            <a href="#" data-filter=".Habbit">Habbit</a>
-            <a href="#" data-filter=".Study">Study</a>
-            <a href="#" data-filter=".philanthropy">Philanthropy</a>
+<!--        <div class="col-md-12 col-lg-6 text-left text-lg-right" data-aos="fade-up" data-aos-delay="100">-->
+<!--          <div id="filters" class="filters">-->
+<!--            <a href="#" data-filter="*" class="active">All</a>-->
+<!--            <a href="#" data-filter=".Life">Life</a>-->
+<!--            <a href="#" data-filter=".Workout">Workout</a>-->
+<!--            <a href="#" data-filter=".Habbit">Habbit</a>-->
+<!--            <a href="#" data-filter=".Study">Study</a>-->
+<!--            <a href="#" data-filter=".philanthropy">Philanthropy</a>-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
+
+<!--      <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">-->
+        <%# @challenges.each do |challenge| %>
+<!--          <div class="item <%#= challenge.category%> col-sm-6 col-md-4 col-lg-4 mb-4">-->
+<!--            <a href="/challenges/<%#=challenge.id%>" class="item-wrap fancybox">-->
+<!--              <div class="work-info">-->
+<!--                <h3><%#= challenge.name %></h3>-->
+<!--                <span><%#= challenge.coins %> coins</span>-->
+<!--              </div>-->
+<!--              <img src="<%#= challenge.pic_link %>" alt="Image" class="img-fluid">-->
+              <%#= image_tag "img_1_big.jpg", class: "img-fluid" %>
+<!--            </a>-->
+<!--          </div> -->
+        <%# end %>
+<!--      </div>-->
+
+
+<!--      <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">-->
+<!--        <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">-->
+<!--          <a href="work-single.html" class="item-wrap fancybox">-->
+<!--            <div class="work-info">-->
+<!--              <h3>Boxed Water</h3>-->
+<!--              <span>Web</span>-->
+<!--            </div>-->
+            <%#= image_tag "img_1_big.jpg", class: "img-fluid" %>
+            <%# <img class="img-fluid" src="../../assets/img/img_1.jpg"> %>
+<!--          </a>-->
+<!--        </div>-->
+<!--        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">-->
+<!--          <a href="work-single.html" class="item-wrap fancybox">-->
+<!--            <div class="work-info">-->
+<!--              <h3>Build Indoo</h3>-->
+<!--              <span>Photography</span>-->
+<!--            </div>-->
+            <%#= image_tag "img_2.jpg", class: "img-fluid" %>
+            <%# <img class="img-fluid" src="app/assets/img/img_2.jpg"> %>
+<!--          </a>-->
+<!--        </div>-->
+<!--        <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4">-->
+<!--          <a href="work-single.html" class="item-wrap fancybox">-->
+<!--            <div class="work-info">-->
+<!--              <h3>Cocooil</h3>-->
+<!--              <span>Branding</span>-->
+<!--            </div>-->
+            <%#= image_tag "img_3.jpg", class: "img-fluid" %>
+            <%# <img class="img-fluid" src="app/assets/img/img_3.jpg"> %>
+<!--          </a>-->
+<!--        </div>-->
+<!--        <div class="item design col-sm-6 col-md-4 col-lg-4 mb-4">-->
+<!--          <a href="work-single.html" class="item-wrap fancybox">-->
+<!--            <div class="work-info">-->
+<!--              <h3>Nike Shoe</h3>-->
+<!--              <span>Design</span>-->
+<!--            </div>-->
+            <%#= image_tag "img_4.jpg", class: "img-fluid" %>
+            <%# <img class="img-fluid" src="app/assets/img/img_4.jpg"> %>
+<!--          </a>-->
+<!--        </div>-->
+<!--        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">-->
+<!--          <a href="work-single.html" class="item-wrap fancybox">-->
+<!--            <div class="work-info">-->
+<!--              <h3>Kitchen Sink</h3>-->
+<!--              <span>Photography</span>-->
+<!--            </div>-->
+            <%#= image_tag "img_5.jpg", class: "img-fluid" %>
+            <%# <img class="img-fluid" src="app/assets/img/img_5.jpg"> %>
+<!--          </a>-->
+<!--        </div>-->
+<!--        <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4">-->
+<!--          <a href="work-single.html" class="item-wrap fancybox">-->
+<!--            <div class="work-info">-->
+<!--              <h3>Amazon</h3>-->
+<!--              <span>brandingn</span>-->
+<!--            </div>-->
+            <%#= image_tag "img_6.jpg", class: "img-fluid" %>
+            <%# <img class="img-fluid" src="app/assets/img/img_6.jpg"> %>
+<!--          </a>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
+<!--      new template-->
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-life-tab" data-toggle="pill" href="#pills-life" role="tab" aria-controls="pills-life" aria-selected="false">Life</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-workout-tab" data-toggle="pill" href="#pills-workout" role="tab" aria-controls="pills-workout" aria-selected="false">Workout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-habit-tab" data-toggle="pill" href="#pills-habit" role="tab" aria-controls="pills-habit" aria-selected="true">Habit</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-study-tab" data-toggle="pill" href="#pills-study" role="tab" aria-controls="pills-study" aria-selected="true">Study</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-Philanthropy-tab" data-toggle="pill" href="#pills-Philanthropy" role="tab" aria-controls="pills-Philanthropy" aria-selected="true">Philanthropy</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+          <div class="row text-center">
+            <% if !@challenges.nil?%>
+              <% @challenges.all.each do |challenge| %>
+                <div class="col-lg-3 col-md-6 mb-4">
+                  <div class="card h-100">
+                    <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
+                    <div class="card-body">
+                      <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
+                      <p class="card-text"><%= challenge.description[0..100] + "..." %></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-life" role="tabpanel" aria-labelledby="pills-life-tab">
+          <div class="row text-center">
+            <% if !@challenges.nil?%>
+              <% @challenges.each do |challenge| %>
+                <% if challenge.category == 'Life' %>
+                  <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                      <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
+                      <div class="card-body">
+                        <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
+                        <p class="card-text"><%= challenge.description[0..100] + "..." %></p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-workout" role="tabpanel" aria-labelledby="pills-workout-tab">
+          <div class="row text-center">
+            <% if !@challenges.nil?%>
+              <% @challenges.each do |challenge| %>
+                <% if challenge.category == 'Workout' %>
+                  <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                      <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
+                      <div class="card-body">
+                        <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
+                        <p class="card-text"><%= challenge.description[0..100] + "..." %></p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-habit" role="tabpanel" aria-labelledby="pills-habit-tab">
+          <div class="row text-center">
+            <% if !@challenges.nil?%>
+              <% @challenges.each do |challenge| %>
+                <% if challenge.category == 'Habbit' %>
+                  <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                      <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
+                      <div class="card-body">
+                        <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
+                        <p class="card-text"><%= challenge.description[0..100] + "..." %></p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-study" role="tabpanel" aria-labelledby="pills-study-tab">
+          <div class="row text-center">
+            <% if !@challenges.nil?%>
+              <% @challenges.each do |challenge| %>
+                <% if challenge.category == 'Study' %>
+                  <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                      <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
+                      <div class="card-body">
+                        <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
+                        <p class="card-text"><%= challenge.description[0..100] + "..." %></p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-Philanthropy" role="tabpanel" aria-labelledby="pills-Philanthropy-tab">
+          <div class="row text-center">
+            <% if !@challenges.nil?%>
+              <% @challenges.each do |challenge| %>
+                <% if challenge.category == 'philanthropy' %>
+                  <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                      <%= link_to image_tag(challenge.pic_link, alt: challenge.name, class: "card-img-top"), challenge %>
+                      <div class="card-body">
+                        <h4> <%= link_to challenge.name, challenge, class: "card-title" %></h4>
+                        <p class="card-text"><%= challenge.description[0..100] + "..." %></p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
 
-      <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-        <% @challenges.each do |challenge| %>
-          <div class="item <%= challenge.category%> col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="/challenges/<%=challenge.id%>" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3><%= challenge.name %></h3>
-                <span><%= challenge.coins %> coins</span>
-              </div>
-              <img src="<%= challenge.pic_link %>" alt="Image" class="img-fluid">
-              <%#= image_tag "img_1_big.jpg", class: "img-fluid" %>
-            </a>
-          </div> 
-        <% end %>
-      </div>
 
-
-      <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-        <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Boxed Water</h3>
-              <span>Web</span>
-            </div>
-            <%= image_tag "img_1_big.jpg", class: "img-fluid" %>
-            <%# <img class="img-fluid" src="../../assets/img/img_1.jpg"> %>
-          </a>
-        </div>
-        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Build Indoo</h3>
-              <span>Photography</span>
-            </div>
-            <%= image_tag "img_2.jpg", class: "img-fluid" %>
-            <%# <img class="img-fluid" src="app/assets/img/img_2.jpg"> %>
-          </a>
-        </div>
-        <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Cocooil</h3>
-              <span>Branding</span>
-            </div>
-            <%= image_tag "img_3.jpg", class: "img-fluid" %>
-            <%# <img class="img-fluid" src="app/assets/img/img_3.jpg"> %>
-          </a>
-        </div>
-        <div class="item design col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Nike Shoe</h3>
-              <span>Design</span>
-            </div>
-            <%= image_tag "img_4.jpg", class: "img-fluid" %>
-            <%# <img class="img-fluid" src="app/assets/img/img_4.jpg"> %>
-          </a>
-        </div>
-        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Kitchen Sink</h3>
-              <span>Photography</span>
-            </div>
-            <%= image_tag "img_5.jpg", class: "img-fluid" %>
-            <%# <img class="img-fluid" src="app/assets/img/img_5.jpg"> %>
-          </a>
-        </div>
-        <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Amazon</h3>
-              <span>brandingn</span>
-            </div>
-            <%= image_tag "img_6.jpg", class: "img-fluid" %>
-            <%# <img class="img-fluid" src="app/assets/img/img_6.jpg"> %>
-          </a>
-        </div>
-      </div>
     </div>
     <%= render 'shared/add_btn'%>
   </section><!-- End  Works Section -->
