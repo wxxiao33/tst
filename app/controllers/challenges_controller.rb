@@ -16,7 +16,7 @@ class ChallengesController < ApplicationController
 
   # GET /challenges/new
   def new
-    @challenges = Challenge.new
+    @challenge = Challenge.new
   end
 
   # GET /challenges/1/edit
