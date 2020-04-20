@@ -112,7 +112,7 @@ input {
   margin-left: 0;
 }
 
-// image crop to square
+//////////////////////////////////// image crop to square
 // reference: https://medium.com/@kimcodeashian/simple-css-solutions-how-to-resize-images-with-different-dimensions-without-cropping-eb744e93246d
 .square {
   position: relative;
@@ -134,7 +134,7 @@ img.landscape {
   width: auto;
 }
 
-// image hover effect
+/////////////////////////////////// image hover effect
 .img-container {
   position: relative;
   width: 50%;
@@ -176,4 +176,20 @@ img.landscape {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+/* [1] The container */
+.img-hover-zoom {
+  height: 350px; /* [1.1] Set it as per your need */
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform 0.25s, visibility 0.25s ease-in;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
 }
