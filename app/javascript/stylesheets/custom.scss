@@ -113,6 +113,7 @@ input {
 }
 
 // image crop to square
+// reference: https://medium.com/@kimcodeashian/simple-css-solutions-how-to-resize-images-with-different-dimensions-without-cropping-eb744e93246d
 .square {
   position: relative;
   width: 300px;
@@ -162,7 +163,7 @@ img.landscape {
 }
 
 .overlay:hover {
-  opacity: 0.6;
+  opacity: 0.9;
 }
 
 .text {
