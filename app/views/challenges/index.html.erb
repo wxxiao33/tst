@@ -23,6 +23,26 @@
         </div>
       </div>
 
+      <p>test</p>
+      <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
+       <% @challenges.each do |challenge| %>
+        <div class="<%= challenge.category%> image-container col-sm-6 col-md-4 col-lg-4 mb-4">
+          <a href="/challenges/<%=challenge.id%>" class="item-wrap fancybox">
+            <div class="square">
+              <img src="<%= challenge.pic_link %>" alt="Image" class="image horizontal"/>
+              <div class="overlay">
+                <h3 class="text"><%= challenge.name %></h3>
+                <p class="text"><%= challenge.coins %> coins</p>
+              </div>
+            </div>
+
+          </a>
+
+        </div>
+      <% end %>
+      </div>
+      <p>end test</p>
+
       <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
         <% @challenges.each do |challenge| %>
           <div class="item <%= challenge.category%> col-sm-6 col-md-4 col-lg-4 mb-4">
@@ -161,3 +181,15 @@
 <br>
 
 <%= render 'shared/add_btn'%>
+
+<script>
+  $(window).on('load', function() {
+    $('img').each(function(){
+      //console.log($(this))
+      //getDim($(this))
+      if ($(this).width() > $(this).height()) {
+        $(this).addClass("landscape")
+      }
+    })
+  })
+</script>
