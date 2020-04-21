@@ -15,6 +15,7 @@ module UsersHelper
   end
 
   def display_by(key, users)
+    
     case key
     when "coins"
       users.sort_by { |user| -user.coins }
@@ -35,5 +36,10 @@ module UsersHelper
 
   def checkedIn?(user_id, challenge_id)
     return ParticipateIn.where(user_id: user_id, challenge_id: challenge_id).first.updated_at == Date.today
+  end
+
+    # Returns true if the given user is the current user.
+  def current_user?(user)
+    user && user == current_user
   end
 end

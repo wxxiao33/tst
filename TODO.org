@@ -10,3 +10,7 @@
 ** Dropdown memu does not work for boostrap 4
     checkout RORT 8.2.3
 ** The logo has a strange hover effect
+
+* Link URL needs to be changed
+* Edit does not work on 3rd party accouts
+* duplicate flash message

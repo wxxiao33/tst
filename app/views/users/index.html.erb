@@ -7,6 +7,7 @@
   <h1>Leaderboard</h1>
 <hr></hr>
 
+<% puts @users.class.name %>
 <div id="exTab1"> 
 <ul class="nav nav-pills filters">
       <li class="active">
@@ -32,7 +33,7 @@
             </thead>
 
             <tbody>
-              <% display_by("coins",@users).each_with_index do |user, i| %>
+              <% display_by("coins", @users).each_with_index do |user, i| %>
                 <tr>
                   <td><%= i+1 %></td>
                   <td><%= link_to user.name, user %></td>
@@ -56,7 +57,7 @@
             </thead>
 
             <tbody>
-              <% display_by("check_ins",@users).each_with_index do |user, i| %>
+              <% display_by("check_ins", @users).each_with_index do |user, i| %>
                 <tr>
                   <td><%= i+1 %></td>
                   <td><%= link_to user.name, user %></td>
@@ -80,7 +81,7 @@
             </thead>
 
             <tbody>
-              <% display_by("challenges",@users).each_with_index do |user, i| %>
+              <% display_by("challenges", @users).each_with_index do |user, i| %>
                 <tr>
                   <td><%= i+1 %></td>
                   <td><%= link_to user.name, user %></td>
@@ -95,7 +96,7 @@
 </div>
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_registration_url %>
 
 </div>
 </div>

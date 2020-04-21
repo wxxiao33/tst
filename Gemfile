@@ -19,7 +19,6 @@ gem 'momentjs-rails'
 gem 'bootstrap4-datetime-picker-rails'
 
 
-
 gem 'pry-byebug'
 gem 'better_errors'
 gem 'awesome_print'
@@ -28,6 +27,17 @@ gem 'hirb'
 gem 'bcrypt',     '3.1.13'
 gem 'random-password'
 gem 'ruby-progressbar'
+
+# Use Devise for authentication
+gem 'devise'
+# Use Omniauth Facebook plugin
+# gem 'omniauth-facebook'
+# Use Omniauth Github plugin
+gem 'omniauth-github'
+# Use Omniauth Twitter plugin
+gem 'omniauth-twitter'
+# Use ActiveRecord Sessions
+gem 'activerecord-session_store'
 
 group :development, :test do
   gem 'byebug',  '11.0.1', platforms: [:mri, :mingw, :x64_mingw]

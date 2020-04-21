@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:edit, :update, :show, :index]
-  before_action :correct_user,   only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -12,52 +10,20 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
   end
 
   # GET /users/1/edit
   def edit
   end
 
-  # POST /users
-  # POST /users.json
-  def create
-    init_params = user_params
-    # initialize other parameters, subject to change
-    init_params[:coins] = 100
-    init_params[:chechin_number] = 0
-    init_params[:challenge_number] = 0
-    
-    @user = User.new(init_params)
-    if @user.save
-      # Handle a successful save.
-      log_in @user
-      flash[:success] = "Welcome to One Day Challenge!"
-      redirect_to @user
-      
-    else
-      if request.fullpath == "/"
-        render "/#contact"
-      else
-        render 'new'
-      end
-    end
-  end
-
-
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { sign_in_and_redirect @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
+        
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -65,15 +31,12 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to users_path, notice: 'User deleted.'
   end
+
 
   def participate
     if participated?(current_user.id, params[:challenge_id])
@@ -123,15 +86,12 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
 
-    # Confirms the correct user.
+    # Only allow a list of trusted parameters through.
+    # def user_params
+    #   params.require(:user).permit(:name, :coins)
+    # end
+        # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])
       unless current_user?(@user)
@@ -146,9 +106,15 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :coins, :chechin_number, :challenge_number)
     end
     
-    
-    # def user_params
-    #   params.require(:user).permit(:name, :email, :password,
-    #                                :password_confirmation)
-    # end
+    def participated?(user_id, challenge_id)
+      return ParticipateIn.where(user_id: user_id, challenge_id: challenge_id).size >= 1
+    end
+
+    def favorited?(user_id, challenge_id)
+      return Favorite.where(user_id: user_id, challenge_id: challenge_id).size >= 1
+    end
+
+    def checkedIn?(user_id, challenge_id)
+      return ParticipateIn.where(user_id: user_id, challenge_id: challenge_id).first.updated_at == Date.today
+    end
 end
