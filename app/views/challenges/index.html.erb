@@ -25,81 +25,20 @@
 
       <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
         <% @challenges.each do |challenge| %>
-          <div class="item <%= challenge.category%> col-sm-6 col-md-4 col-lg-4 mb-4">
+          <div class="<%= challenge.category%> image-container col-sm-6 col-md-4 col-lg-4 mb-4">
             <a href="/challenges/<%=challenge.id%>" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3><%= challenge.name %></h3>
-                <span><%= challenge.coins %> coins</span>
+              <div class="square img-hover-zoom">
+                <img src="<%= challenge.pic_link %>" alt="Image" class="image horizontal"/>
+                <div class="overlay">
+                  <div class="text">
+                    <h3><%= challenge.name %></h3>
+                    <p style="color: #fed136; font-weight: bold;"><%= challenge.coins %> coins</p>
+                  </div>
+                </div>
               </div>
-              <img src="<%= challenge.pic_link %>" alt="Image" class="img-fluid">
-              <%= image_tag "img_1_big.jpg", class: "img-fluid" %>
             </a>
           </div>
         <% end %>
-      </div>
-
-
-      <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-        <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Boxed Water</h3>
-              <span>Web</span>
-            </div>
-            <%= image_tag "img_1_big.jpg", class: "img-fluid" %>
-            <%#= img class="img-fluid" src="../../assets/img/img_1.jpg"%>
-          </a>
-        </div>
-        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Build Indoo</h3>
-              <span>Photography</span>
-            </div>
-            <%= image_tag "img_2.jpg", class: "img-fluid" %>
-            <%# <img class="img-fluid" src="app/assets/img/img_2.jpg"> %>
-          </a>
-        </div>
-        <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Cocooil</h3>
-              <span>Branding</span>
-            </div>
-            <%= image_tag "img_3.jpg", class: "img-fluid" %>
-            <%# <img class="img-fluid" src="app/assets/img/img_3.jpg"> %>
-          </a>
-        </div>
-        <div class="item design col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Nike Shoe</h3>
-              <span>Design</span>
-            </div>
-            <%= image_tag "img_4.jpg", class: "img-fluid" %>
-            <%# <img class="img-fluid" src="app/assets/img/img_4.jpg"> %>
-          </a>
-        </div>
-        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Kitchen Sink</h3>
-              <span>Photography</span>
-            </div>
-            <%= image_tag "img_5.jpg", class: "img-fluid" %>
-            <%# <img class="img-fluid" src="app/assets/img/img_5.jpg"> %>
-          </a>
-        </div>
-        <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="work-single.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Amazon</h3>
-              <span>brandingn</span>
-            </div>
-            <%= image_tag "img_6.jpg", class: "img-fluid" %>
-            <%# <img class="img-fluid" src="app/assets/img/img_6.jpg"> %>
-          </a>
-        </div>
       </div>
 
 
@@ -300,3 +239,25 @@
 <br>
 
 <%= render 'shared/add_btn'%>
+
+<script>
+  // $(window).on('load', function() {
+  //   $('img').each(function(){
+  //     //console.log($(this))
+  //     //getDim($(this))
+  //     if ($(this).width() > $(this).height()) {
+  //       $(this).addClass("landscape")
+  //     }
+  //   })
+  // })
+
+  document.addEventListener("turbolinks:load", function() {
+      $('img').each(function(){
+      //console.log($(this))
+      //getDim($(this))
+      if ($(this).width() > $(this).height()) {
+        $(this).addClass("landscape")
+      }
+    })
+})
+</script>
