@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 gem 'rails',      '6.0.2.1'
 gem 'puma',       '3.12.4'
 gem 'pg'

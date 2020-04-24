@@ -37,8 +37,10 @@ Rails.application.configure do
     address: "smtp.gmail.com",
     domain: "gmail.com",
     port: 587,
-    user_name: "onedaychallege@gmail.com",
-    password: "OneDay!!",
+    # user_name: "onedaychallege@gmail.com",
+    # password: "OneDay!!",
+    user_name: ENV['OnedayEmail'],
+    password: ENV['OnedayEmailPwd'],
     authentication: 'plain',
     enable_starttls_auto: true
   }
