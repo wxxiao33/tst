@@ -13,7 +13,7 @@ development:
   <<: *default
   # username: anyan
   username: <%= ENV['one_day_challenge_USERNAME'] %>
-  database: one_day_challenge_development
+  database: one_day_challenge_new_development
   password: <%= ENV['one_day_challenge_DATABASE_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
@@ -23,7 +23,7 @@ test:
   <<: *default
   # username: anyan
   username: <%= ENV['one_day_challenge_USERNAME'] %>
-  database: one_day_challenge_test
+  database: one_day_challenge_new_test
   password: <%= ENV['one_day_challenge_DATABASE_PASSWORD'] %>
 
 production:
