@@ -24,7 +24,8 @@
     <!-- <strong>Challenge number: </strong><%= @user.challenge_number %> -->
   </p>
   <% if current_user?(@user) %>
-    <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
+    <%#= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary btn-lg" %>
+    <%= link_to 'Edit', edit_user_registration_path, class: "btn btn-primary btn-lg" %>
   <% end %>
 </header>
 
