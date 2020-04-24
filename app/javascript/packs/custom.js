@@ -1,5 +1,5 @@
 //////////// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
-window.onscroll = function() {
+window.onscroll = function () {
   scrollFunction();
 };
 
@@ -14,5 +14,3 @@ function scrollFunction() {
     document.getElementById("logo").style.fontSize = "35px";
   }
 }
-
-
