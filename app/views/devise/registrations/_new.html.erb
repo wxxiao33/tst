@@ -30,5 +30,10 @@
             <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
         </div>
         
-        <%= render "devise/shared/links" %>
+        <a href="#LogInModal" data-toggle="modal" data-dismiss="modal">Log In</a></br >
+
+        <%- resource_class.omniauth_providers.each do |provider| %>
+            <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+        <% end %>
+        <%#= render "devise/shared/links" %>
 <% end %>
