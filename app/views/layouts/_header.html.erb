@@ -32,7 +32,8 @@
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "Log in", new_user_session_path, class: "nav-link" %></li>
+            <li><a href="" class="nav-link" data-toggle="modal" data-target="#LogInModal2">Log In</a></li>
+            <%# <li>= link_to "Log in", new_user_session_path, class: "nav-link"</li> %>
           <% end %>
         </ul>
       </div>      
@@ -54,7 +55,10 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_user%></li>
-              <li><%= link_to "Settings", edit_user_registration_path %></li>
+              <li><a href="" data-toggle="modal" data-target="#EditModal1">Settings</a></li>
+              <%# <li> %>
+                <%#= link_to "Settings", edit_user_registration_path %>
+              <%# </li> %>
               <li class="divider"></li>
               <li>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete %>
@@ -62,14 +66,67 @@
             </ul>
           </li>
         <% else %>
-          <li><%= link_to "Log in", new_user_session_path, class: "nav-link" %></li>
+          <li><a href="" class="nav-link" data-toggle="modal" data-target="#LogInModal2">Log In</a></li>
+          <%# <li> %>
+            <%#= link_to "Log in", "devise/sessions/new", class: "nav-link" %>
+          <%# </li> %>
         <% end %>
         </ul>
       </div>
-
-
 
       <% end %>
       
     </div>
   </nav>
+  
+ <!-- Modal -->
+<div class="modal fade" id="SignUpModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render "devise/registrations/new" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- Modal -->
+<div class="modal fade" id="LogInModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render "devise/sessions/new" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- Modal -->
+<div class="modal fade" id="EditModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Settings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render "devise/registrations/edit" %>
+      </div>
+
+    </div>
+  </div>
+</div>
